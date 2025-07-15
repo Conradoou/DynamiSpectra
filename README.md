@@ -31,9 +31,19 @@ Note: *DynamiSpectra* uses the package SciPy, which requires a fortran compiler 
 Documentation
 -------------
 
-
+https://github.com/Conradoou/DynamiSpectra/blob/6b8200eae1baf6dd75d88af79e047353c8ffdc8d/Documentation.pdf
 https://conradoou.github.io/DynamiSpectra/
 
+Authors
+-------
+
+Iverson Conrado Bezerra
+Orcid: 0000-0003-0524-8913
+
+Register
+--------
+
+DynamiSpectra is registered with the Brazilian National Institute of Industrial Property (INPI) under the code BR 51 2025 002221-2.
 
 Demo
 ----
