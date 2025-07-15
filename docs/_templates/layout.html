@@ -1,0 +1,10 @@
+{% extends "!layout.html" %}
+
+{% block menu %}
+  {{ super() }}
+  <div class="pdf-download" style="margin: 15px; text-align: center;">
+    <a href="{{ pdf_url }}" class="btn btn-neutral">
+      <i class="fa fa-file-pdf-o"></i> Download PDF
+    </a>
+  </div>
+{% endblock %}

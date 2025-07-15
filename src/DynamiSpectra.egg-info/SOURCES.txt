@@ -1,0 +1,52 @@
+MANIFEST.in
+README.md
+setup.py
+src/DynamiSpectra.egg-info/PKG-INFO
+src/DynamiSpectra.egg-info/SOURCES.txt
+src/DynamiSpectra.egg-info/dependency_links.txt
+src/DynamiSpectra.egg-info/entry_points.txt
+src/DynamiSpectra.egg-info/requires.txt
+src/DynamiSpectra.egg-info/top_level.txt
+src/dynamispectra/Contacts.py
+src/dynamispectra/Density.py
+src/dynamispectra/Distance.py
+src/dynamispectra/DistanceMatrix.py
+src/dynamispectra/FractionSS.py
+src/dynamispectra/Hbond.py
+src/dynamispectra/Hydrophobic_contacts.py
+src/dynamispectra/LigandAngle.py
+src/dynamispectra/PCA.py
+src/dynamispectra/PhiPsi.py
+src/dynamispectra/Pressure.py
+src/dynamispectra/RMSD.py
+src/dynamispectra/RMSF.py
+src/dynamispectra/Rg.py
+src/dynamispectra/Rotamers.py
+src/dynamispectra/SASA.py
+src/dynamispectra/SecondaryStructure.py
+src/dynamispectra/Temperature.py
+src/dynamispectra/__init__.py
+src/dynamispectra/cly.py
+src/dynamispectra/ligand_density.py
+src/dynamispectra/main.py
+src/dynamispectra/saltbridge.py
+tests/test_PhiPsi.py
+tests/test_Rg.py
+tests/test_contacts.py
+tests/test_density.py
+tests/test_distance matrix.py
+tests/test_distance.py
+tests/test_fractionss.py
+tests/test_hbond.py
+tests/test_hydrophobic contacts.py
+tests/test_ligand angle.py
+tests/test_ligand density.py
+tests/test_pca.py
+tests/test_pressure.py
+tests/test_rmsd.py
+tests/test_rmsf.py
+tests/test_rotamers.py
+tests/test_saltbridge.py
+tests/test_sasa.py
+tests/test_secondary structure.py
+tests/test_temperature.py

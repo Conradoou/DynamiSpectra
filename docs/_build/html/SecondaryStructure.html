@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secondary Structure Probability &mdash; DynamiSpectra 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3150b5f7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Secondary Structure Fraction" href="FractionSS.html" />
+    <link rel="prev" title="Principal Component Analysis" href="PCA.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DynamiSpectra
+              <img src="_static/logo1.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSD.html">RMSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSF.html">RMSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rg.html">Radius of gyration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hbond.html">Hydrogen Bond Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SASA.html">SASA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Saltbridge.html">Salt bridge (mudar isso para numero de pontes)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contacts.html">Protein-Ligand Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance.html">Protein-Ligand Minimal Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hydrophobic_contacts.html">Protein–Ligand Hydrophobic Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DistanceMatrix.html">Inter-residue Distance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PhiPsi.html">Phi and Psi Angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rotamers.html">Rotamers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20Density.html">Ligand Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20angle.html">Ligand Angle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principal Component Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Secondary Structure Probability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-code">Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="FractionSS.html">Secondary Structure Fraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pressure.html">System Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Temperature.html">System Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Density.html">System Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html">Changelog</a></li>
+</ul>
+
+  <div class="pdf-download" style="margin: 15px; text-align: center;">
+    <a href="https://dynamispectra.readthedocs.io/_/downloads/en/latest/pdf/" class="btn btn-neutral">
+      <i class="fa fa-file-pdf-o"></i> Download PDF
+    </a>
+  </div>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DynamiSpectra</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Secondary Structure Probability</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/SecondaryStructure.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="secondary-structure-probability">
+<h1>Secondary Structure Probability<a class="headerlink" href="#secondary-structure-probability" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> provides a comprehensive secondary structure analysis tool for molecular dynamics simulations based on .dat files. This module calculates the frame-wise probability of each structural state—such as α-helices, β-sheets, loops, turns, bends, and 3-helices—across simulation replicas. The results are visualized using boxplots, allowing for comparative analysis of secondary structure stability and population among different simulation groups.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ss_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="o">*</span><span class="n">simulation_files_groups</span><span class="p">,</span> <span class="n">plot_config</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_static/mkdir/SS.png" src="_static/mkdir/SS.png" />
+<p><strong>Interpretation guidence:</strong> This graph shows the probability distribution of each secondary structure type across the simulation. Variations in these probabilities can reflect structural stability or conformational changes over time. Consistent probabilities suggest stable elements, while shifts may indicate unfolding or rearrangements.</p>
+</section>
+<section id="complete-code">
+<h2>Complete code<a class="headerlink" href="#complete-code" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mapping DSSP secondary structure codes to numeric labels</span>
+<span class="n">state_mapping</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># Alpha helix</span>
+<span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Beta sheet</span>
+<span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># Coil / Loop</span>
+<span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="c1"># Turn</span>
+<span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># Bend</span>
+<span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>  <span class="c1"># 3-Helix</span>
+<span class="s1">&#39;~&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Unknown / missing data</span>
+<span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># Isolated beta-bridge (treated as unknown)</span>
+<span class="p">}</span>
+
+<span class="c1"># Human-readable state names for plotting</span>
+<span class="n">state_names</span> <span class="o">=</span> <span class="p">{</span>
+<span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Loop/Coil&#39;</span><span class="p">,</span>
+<span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;α-Helix&#39;</span><span class="p">,</span>
+<span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;β-Sheet&#39;</span><span class="p">,</span>
+<span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Turn&#39;</span><span class="p">,</span>
+<span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Bend&#39;</span><span class="p">,</span>
+<span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;3-Helix&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_ss</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Reads secondary structure assignments from a .dat file.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">    file (str): Path to the secondary structure .dat file.</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">    np.ndarray: 2D array with shape (frames x residues), numeric states.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reading file: </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ss_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="c1"># Skip comment/header lines or empty lines</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="s1">&#39;;&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="c1"># Map each character in line to numeric state, default -1 for unknown</span>
+            <span class="n">ss_line</span> <span class="o">=</span> <span class="p">[</span><span class="n">state_mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+            <span class="n">ss_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ss_line</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ss_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No valid data found in </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ss_data</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error reading </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_probabilities</span><span class="p">(</span><span class="n">ss_data</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calculate the per-frame probability of each secondary structure state.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">    ss_data (np.ndarray): 2D array of secondary structure states (frames x residues).</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">    dict: Keys are state names, values are 1D arrays of per-frame probabilities.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">probabilities</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">state_names</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+<span class="k">for</span> <span class="n">code</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">state_names</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># Calculate fraction of residues in each state per frame</span>
+    <span class="n">probabilities</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ss_data</span> <span class="o">==</span> <span class="n">code</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">ss_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">return</span> <span class="n">probabilities</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_ss_boxplot</span><span class="p">(</span><span class="n">probabilities_list</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">axis_label_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Probability (%)&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Generate a boxplot comparing secondary structure probabilities across simulations.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">    probabilities_list (list of dicts): List of probability dicts from each simulation group.</span>
+<span class="sd">    labels (list of str): Labels for each simulation group.</span>
+<span class="sd">    colors (list of str): Colors for each simulation group.</span>
+<span class="sd">    output_folder (str): Directory to save plots.</span>
+<span class="sd">    alpha (float): Transparency for boxplot fill colors.</span>
+<span class="sd">    axis_label_size (int): Font size for axis labels.</span>
+<span class="sd">    y_axis_label (str): Label for Y axis.</span>
+<span class="sd">    figsize (tuple): Figure size (width, height).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">x_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">state_names</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_labels</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper to plot one set of boxplots with given positions and color.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">box</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">positions</span><span class="p">,</span> <span class="n">widths</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">),</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">patch</span> <span class="ow">in</span> <span class="n">box</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">]:</span>
+        <span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">median</span> <span class="ow">in</span> <span class="n">box</span><span class="p">[</span><span class="s1">&#39;medians&#39;</span><span class="p">]:</span>
+        <span class="n">median</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">box</span>
+
+<span class="c1"># Plot boxplots for each simulation group side-by-side</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">probabilities_list</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="p">)):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">probs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">x_labels</span><span class="p">]</span>  <span class="c1"># Convert fraction to percentage</span>
+    <span class="n">plot_boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mf">0.25</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">axis_label_size</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">y_axis_label</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">axis_label_size</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">axis_label_size</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="n">axis_label_size</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Create legend patches for simulation groups</span>
+<span class="n">legend_elements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_elements</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">axis_label_size</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s1">&#39;secondary_structure_boxplot.png&#39;</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s1">&#39;secondary_structure_boxplot.tiff&#39;</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ss_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="o">*</span><span class="n">simulation_files_groups</span><span class="p">,</span> <span class="n">plot_config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Main function to perform secondary structure analysis.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">    output_folder (str): Directory to save generated plots.</span>
+<span class="sd">    *simulation_files_groups: Variable number of groups of replicate file paths (lists of str).</span>
+<span class="sd">    plot_config (dict, optional): Configuration for plotting, supports:</span>
+<span class="sd">        - labels (list of str): Names of simulation groups.</span>
+<span class="sd">        - colors (list of str): Colors for groups.</span>
+<span class="sd">        - alpha (float): Transparency for boxplots.</span>
+<span class="sd">        - axis_label_size (int): Font size for axis labels.</span>
+<span class="sd">        - y_axis_label (str): Label for Y axis.</span>
+<span class="sd">        - figsize (tuple): Figure size (width, height).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">if</span> <span class="n">plot_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">plot_config</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">num_groups</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">simulation_files_groups</span><span class="p">)</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;labels&#39;</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Simulation </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_groups</span><span class="p">)])</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#54b36a&#39;</span><span class="p">][:</span><span class="n">num_groups</span><span class="p">])</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+<span class="n">axis_label_size</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;axis_label_size&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">y_axis_label</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;y_axis_label&#39;</span><span class="p">,</span> <span class="s1">&#39;Probability (%)&#39;</span><span class="p">)</span>
+<span class="n">figsize</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process_group</span><span class="p">(</span><span class="n">file_paths</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read and aggregate secondary structure data from replicate files in one simulation group.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        file_paths (list of str): Paths to replicate .dat files.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: Secondary structure data array (frames x residues) from the first replicate.</span>
+<span class="sd">                    (Assuming replicates have the same data format.)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ss_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_paths</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">read_ss</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ss_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1"># For simplicity, use the first replicate data (assuming replicates have the same data)</span>
+    <span class="k">return</span> <span class="n">ss_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">ss_data</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="n">probabilities_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">simulation_files_groups</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">group</span><span class="p">:</span>
+        <span class="n">ss_data</span> <span class="o">=</span> <span class="n">process_group</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ss_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">probabilities</span> <span class="o">=</span> <span class="n">calculate_probabilities</span><span class="p">(</span><span class="n">ss_data</span><span class="p">)</span>
+            <span class="n">probabilities_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">probabilities</span><span class="p">)</span>
+
+<span class="n">plot_ss_boxplot</span><span class="p">(</span><span class="n">probabilities_list</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">axis_label_size</span><span class="o">=</span><span class="n">axis_label_size</span><span class="p">,</span>
+                <span class="n">y_axis_label</span><span class="o">=</span><span class="n">y_axis_label</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PCA.html" class="btn btn-neutral float-left" title="Principal Component Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="FractionSS.html" class="btn btn-neutral float-right" title="Secondary Structure Fraction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Iverson Conrado Bezerra.
+      <span class="lastupdated">Last updated on Jul 12, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

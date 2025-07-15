@@ -1,0 +1,92 @@
+Ligand Density
+==============
+
+Overview
+---------
+
+*DynamiSpectra* provides a ligand density analysis module for molecular dynamics simulations performed using the GROMACS software. This tool allows users to visualize the spatial distribution of the ligand over the course of a single simulation, offering insights into preferred binding regions and interaction patterns within the system.
+
+**How to interpret:** This graph displays the spatial density of the ligand throughout the simulation, highlighting regions where the ligand spends more time. Brighter areas indicate higher relative density, suggesting preferred binding or interaction zones within the system. By identifying these hotspots, one can infer potential binding sites, interaction stability, and regions of biological or pharmacological interest. The distribution pattern may also reflect the dynamics of ligand diffusion or confinement in specific areas of the simulation environment.
+
+.. code:: python
+
+    def ligand_density_analysis(xpm_file_path, plot=True, save_path=None):
+
+.. image:: /_static/mkdir/ligand_density.png
+
+
+Complete code
+-------------
+
+.. code:: python
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import os
+
+.. code:: python
+
+    def read_xpm(file_path):
+
+.. code:: python
+   
+    with open(file_path, 'r') as f:
+        lines = f.readlines()
+
+    lines = [l.strip() for l in lines if l.strip().startswith('"')]
+    header_line = lines[0].strip().strip('",')
+    width, height, ncolors, chars_per_pixel = map(int, header_line.split())
+
+    color_map = {}
+    for i in range(1, ncolors + 1):
+        line = lines[i].strip().strip('",')
+        symbol = line[:chars_per_pixel]
+        color_map[symbol] = i - 1
+
+    matrix = []
+    for line in lines[ncolors + 1:]:
+        line = line.strip().strip('",')
+        row = [color_map[line[i:i+chars_per_pixel]] for i in range(0, len(line), chars_per_pixel)]
+        matrix.append(row)
+
+    return np.array(matrix)
+
+.. code:: python
+   
+    def plot_density(matrix, cmap='inferno', xlabel='X', ylabel='Y', title='', 
+                 colorbar_label='Relative density', save_path=None):
+
+.. code:: python
+
+    """
+    Plots the density matrix and optionally saves it as .png and .tiff in 300 dpi.
+    """
+    plt.figure()
+    plt.imshow(matrix, cmap=cmap, origin='lower', aspect='auto')
+    plt.colorbar(label=colorbar_label)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.tight_layout()
+
+    if save_path:
+        base, _ = os.path.splitext(save_path)
+        plt.savefig(f"{base}.png", dpi=300)
+        plt.savefig(f"{base}.tiff", dpi=300)
+        print(f"Gráficos salvos como {base}.png e {base}.tiff")
+
+    plt.show()
+
+.. code:: python
+   
+    def ligand_density_analysis(xpm_file_path, plot=True, save_path=None):
+    
+.. code:: python
+   
+    """
+    Reads an XPM file, plots the ligand density, and optionally saves the figure.
+    """
+    matrix = read_xpm(xpm_file_path)
+    if plot:
+        plot_density(matrix, save_path=save_path)
+    return matrix

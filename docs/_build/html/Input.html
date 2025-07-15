@@ -1,0 +1,1770 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Input &mdash; DynamiSpectra 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3150b5f7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RMSD" href="RMSD.html" />
+    <link rel="prev" title="Installation" href="Installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DynamiSpectra
+              <img src="_static/logo1.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#root-mean-square-deviation">Root Mean Square Deviation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root-mean-square-fluctuation">Root Mean Square Fluctuation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#radius-of-gyration">Radius of Gyration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hydrogen-bond-analysis">Hydrogen Bond Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solvent-accessible-surface-area">Solvent Accessible Surface Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#salt-bridge">Salt Bridge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proteinligand-contacts">Protein–Ligand Contacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proteinligand-minimum-distance">Protein–Ligand Minimum Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#protein-ligand-hydrophobic-contacts">Protein-Ligand Hydrophobic Contacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inter-residue-distance-matrix">Inter-residue Distance Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#phi-and-psi-angles">Phi and Psi Angles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotamers-dihedral-1-and-2-angles">Rotamers (Dihedral χ1 and χ2 Angles)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ligand-density">Ligand Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ligand-dihedral-angle-analysis">Ligand Dihedral Angle Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#secondary-structure-probability">Secondary Structure Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#secondary-structure-fractions">Secondary Structure Fractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pressure-analysis">Pressure Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#temperature-analysis">Temperature Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density-analysis">Density Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="RMSD.html">RMSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSF.html">RMSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rg.html">Radius of gyration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hbond.html">Hydrogen Bond Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SASA.html">SASA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Saltbridge.html">Salt bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contacts.html">Protein-Ligand Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance.html">Protein-Ligand Minimal Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hydrophobic_contacts.html">Protein–Ligand Hydrophobic Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DistanceMatrix.html">Inter-residue Distance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PhiPsi.html">Phi and Psi Angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rotamers.html">Rotamers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20Density.html">Ligand Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20angle.html">Ligand Angle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principal Component Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondaryStructure.html">Secondary Structure Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FractionSS.html">Secondary Structure Fraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pressure.html">System Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Temperature.html">System Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Density.html">System Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html">Changelog</a></li>
+</ul>
+
+  <div class="pdf-download" style="margin: 15px; text-align: center;">
+    <a href="https://dynamispectra.readthedocs.io/_/downloads/en/latest/pdf/" class="btn btn-neutral">
+      <i class="fa fa-file-pdf-o"></i> Download PDF
+    </a>
+  </div>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DynamiSpectra</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Input</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Input.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="input">
+<h1>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h1>
+<p><em>DynamiSpectra</em> provides a variety of data analysis tools for GROMACS output files:</p>
+<section id="root-mean-square-deviation">
+<h2>Root Mean Square Deviation<a class="headerlink" href="#root-mean-square-deviation" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires GROMACS output files with the <cite>.xvg</cite> extension for RMSD analysis. These files must contain the time series of atomic deviations during the simulation, typically generated using the <cite>gmx rms</cite> tool from GROMACS. The <cite>.xvg</cite> file is expected to have two columns: the first representing simulation time in nanoseconds (ns), and the second containing RMSD values in nanometers (nm). These values correspond to the deviation of the selected atoms or groups of atoms over time, in relation to a reference structure.</p>
+<p>To generate this file using GROMACS, the following command can be used:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>rms<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-o<span class="w"> </span>rmsd.xvg<span class="w"> </span>-tu<span class="w"> </span>ns
+</pre></div>
+</div>
+<p><em>DynamiSpectra</em> allows the analysis of one or more simulation groups. Each group can include one or multiple replicate <cite>.xvg</cite> files. The analysis function automatically computes the average and standard deviation across replicates for each group and produces both time-resolved and density plots.</p>
+<p><strong>Code Execution</strong></p>
+<p>The analysis is performed by calling the <cite>rmsd_analysis</cite> function from the RMSD module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.RMSD</span><span class="w"> </span><span class="kn">import</span> <span class="n">rmsd_analysis</span>
+</pre></div>
+</div>
+<p>The following example shows how to analyze three simulation groups, each containing three replicates:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input RMSD files for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSD\rmsd_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Output directory to save plots</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Optional configuration for the RMSD vs time plot</span>
+<span class="n">rmsd_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels for each group</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line colors for each group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of the shaded error area</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Size of the figure (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Label for the x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Simulation Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for the y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;RMSD (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Optional configuration for the RMSD density (distribution) plot</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels for each group</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line colors for each group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of the curves</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Size of the density plot</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Label for the x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;RMSD (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for the y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+     <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the analysis</span>
+<span class="n">rmsd_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">rmsd_config</span><span class="o">=</span><span class="n">rmsd_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>rmsd_config</cite> and <cite>density_config</cite> dictionaries allow users to customize the appearance of the plots. All fields are optional, and default values will be applied if no configuration is provided.</p>
+<p>Although the function supports multiple groups with replicates, it also works with a single group and a single replicate. For example, calling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rmsd_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is sufficient to generate RMSD and density plots for just one simulation set. This flexibility allows users to perform both basic and comparative analyses without modifying the source code, regardless of the number of replicates available.</p>
+</section>
+<section id="root-mean-square-fluctuation">
+<h2>Root Mean Square Fluctuation<a class="headerlink" href="#root-mean-square-fluctuation" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires GROMACS output files with the <cite>.xvg</cite> extension for RMSF analysis. These files must contain the root mean square fluctuation of each residue, typically generated using the <cite>gmx rmsf</cite> tool from GROMACS. The <cite>.xvg</cite> file must contain two columns: the first indicating the residue number, and the second representing the RMSF value (nm) for each residue. These values quantify the flexibility or mobility of each residue along the simulation trajectory.</p>
+<p>To generate the required file using GROMACS, the following command can be used:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>rmsf<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-o<span class="w"> </span>rmsf.xvg<span class="w"> </span>-res
+</pre></div>
+</div>
+<p><em>DynamiSpectra</em> allows analyzing one or more simulation groups, each optionally containing multiple replicate <cite>.xvg</cite> files. The analysis function computes the average and standard deviation across replicates and generates two types of plots: a per-residue fluctuation curve and a density distribution of RMSF values.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.RMSF</span><span class="w"> </span><span class="kn">import</span> <span class="n">rmsf_analysis</span>
+</pre></div>
+</div>
+<p>Example with three simulation groups, each containing three replicates:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define replicate file paths for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\RMSF\rmsf_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Output directory to save the plots</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Optional configuration for the per-residue RMSF plot</span>
+<span class="n">rmsf_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels for each group in the legend</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line colors for each group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of the shaded error region</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="c1"># Size of the figure (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Label for the x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Residue Number&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for the y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;RMSF (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="c1"># X-axis limits (optional)</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">42</span><span class="p">),</span>
+    <span class="c1"># Y-axis limits (optional)</span>
+    <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Optional configuration for the RMSF density plot</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels for KDE curves</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Colors for KDE curves</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of the KDE fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="c1"># Size of the density figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;RMSF (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="c1"># X-axis limits (optional)</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="c1"># Y-axis limits (None = automatic)</span>
+    <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the RMSF analysis</span>
+<span class="n">rmsf_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">rmsf_config</span><span class="o">=</span><span class="n">rmsf_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You may also analyze a single group with a single replicate by passing only one list of files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rmsf_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Both configuration dictionaries (<cite>rmsf_config</cite> and <cite>density_config</cite>) are optional. If not provided, the function will generate plots with default layout and colors. This flexibility allows users to customize plots according to their preferences while keeping the function compatible with both simple and advanced use cases.</p>
+</section>
+<section id="radius-of-gyration">
+<h2>Radius of Gyration<a class="headerlink" href="#radius-of-gyration" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires GROMACS output files with the <cite>.xvg</cite> extension for Radius of Gyration (Rg) analysis. These files should contain the time series of Rg values computed during the simulation, typically generated with the <cite>gmx gyrate</cite> tool. The <cite>.xvg</cite> file must include the simulation time in nanoseconds (ns) in the first column and the total radius of gyration in nanometers (nm) in the second column. Additional columns (typically third to fifth) may include component values along the X, Y, and Z axes, though only the total Rg (second column) is used in this analysis.</p>
+<p>To generate a compatible file using GROMACS, the following command can be used:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>gyrate<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-o<span class="w"> </span>gyrate.xvg
+</pre></div>
+</div>
+<p>The analysis supports one or more simulation groups, each potentially composed of multiple replicate <cite>.xvg</cite> files. <em>DynamiSpectra</em> calculates average and standard deviation across replicates for each group, and produces both a time-resolved plot and a distribution (KDE) plot of the Rg values.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the analysis function from the Rg module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Rg</span><span class="w"> </span><span class="kn">import</span> <span class="n">rg_analysis</span>
+</pre></div>
+</div>
+<p>Example using three simulation groups with three replicates each:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define replicate files for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Rg\gyrate_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Output directory to save the plots</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Configuration for the Rg time series plot</span>
+<span class="n">rg_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for each simulation group</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line and fill colors</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for shaded error band</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Width and height of the figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+     <span class="c1"># Label for the x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Simulation Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for the y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Rg (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Configuration for the Rg distribution (KDE) plot</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels matching each simulation group</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Fill colors for density curves</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for KDE fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Width and height of the KDE figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Label for the x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Rg (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for the y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the Rg analysis and generate both plots</span>
+<span class="n">rg_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">rg_config</span><span class="o">=</span><span class="n">rg_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>It is also possible to run the analysis using a single group with only one replicate. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rg_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>All plot configuration dictionaries are optional. If omitted, the plots will be generated with default visual settings. This design allows users to tailor the visualization for presentations or publications without altering the analysis logic.</p>
+</section>
+<section id="hydrogen-bond-analysis">
+<h2>Hydrogen Bond Analysis<a class="headerlink" href="#hydrogen-bond-analysis" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires <cite>.xvg</cite> output files from GROMACS for hydrogen bond analysis. These files are typically generated using the <cite>gmx hbond</cite> tool and must contain the time-resolved data of H-bond interactions observed during molecular dynamics simulations.</p>
+<p>The <cite>.xvg</cite> file must have the following structure:</p>
+<ul class="simple">
+<li><p>Column 1: Simulation time in nanoseconds</p></li>
+<li><p>Column 2: Total number of hydrogen bonds detected at each time point</p></li>
+<li><p>Column 3: Number of atom pairs within 0.35 nm (potential H-bond candidates)</p></li>
+</ul>
+<p>These data enable detailed tracking of H-bond dynamics and the compactness or rearrangement of molecular systems throughout the simulation.</p>
+<p>To generate the required <cite>.xvg</cite> file using GROMACS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>hbond<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-num<span class="w"> </span>hbond.xvg<span class="w"> </span>-tu<span class="w"> </span>ns
+</pre></div>
+</div>
+<p><em>DynamiSpectra</em> supports analysis of one or multiple simulation groups, each optionally including several replicate files. It computes the average and standard deviation of H-bond counts across replicates and generates both time-resolved and density plots.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the H-bond analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Hbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">hbond_analysis</span>
+</pre></div>
+</div>
+<p>Example using three simulation groups:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define paths to .xvg replicate files for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Hbond\hbond_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Folder where the plots will be saved</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Plot configuration for H-bond over time</span>
+<span class="n">hbond_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for each simulation</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line and fill colors for each group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for shaded error area</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Width and height of the time series figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Label for the x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for the y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Number of H-bonds&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size of axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Plot configuration for H-bond density (KDE)</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># KDE labels</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># KDE fill colors</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for KDE areas</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Width and height of the KDE figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># x-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Number of H-bonds&#39;</span><span class="p">,</span>
+    <span class="c1"># y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the H-bond analysis</span>
+<span class="n">hbond_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">hbond_config</span><span class="o">=</span><span class="n">hbond_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also run the analysis with a single group and a single replicate:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hbond_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If configuration dictionaries are omitted, <em>DynamiSpectra</em> will generate the plots with default settings. These customization options allow full control of the appearance for publications or presentations.</p>
+</section>
+<section id="solvent-accessible-surface-area">
+<h2>Solvent Accessible Surface Area<a class="headerlink" href="#solvent-accessible-surface-area" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires <cite>.xvg</cite> output files from GROMACS for SASA analysis. These files are typically generated using the <cite>gmx sasa</cite> tool and provide time-resolved measurements of the solvent-accessible surface area of the selected atoms during the simulation.</p>
+<p>The <cite>.xvg</cite> file must follow this format:</p>
+<ul class="simple">
+<li><p>Column 1: Simulation time (ps)</p></li>
+<li><p>Column 2: Total SASA (nm²) of the selected group of atoms over time</p></li>
+</ul>
+<p>This information enables detailed evaluation of conformational changes and solvation properties of the system.</p>
+<p>To generate the required <cite>.xvg</cite> file using GROMACS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>sasa<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-o<span class="w"> </span>sasa.xvg<span class="w"> </span>-probe<span class="w"> </span><span class="m">0</span>.14
+</pre></div>
+</div>
+<p><em>DynamiSpectra</em> supports multiple simulation groups, each with one or more replicates. The package automatically aligns time series, computes mean and standard deviation, and generates plots for both time evolution and density distribution of SASA.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the SASA analysis module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.SASA</span><span class="w"> </span><span class="kn">import</span> <span class="n">sasa_analysis</span>
+</pre></div>
+</div>
+<p>Example with three groups of simulations, each containing three replicates:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define paths to .xvg replicate files for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\SASA\sasa_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Output folder where the plots will be saved</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Configuration for the SASA time series plot</span>
+<span class="n">sasa_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels shown in legend</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Colors for curves and shaded area</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of std deviation fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Size of the time series figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Label for x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Simulation Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;SASA (nm²)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Configuration for the SASA density distribution plot (KDE)</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for KDE plot</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Fill colors for KDE areas</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for filled areas</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Size of the density plot</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># x-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;SASA (nm²)&#39;</span><span class="p">,</span>
+    <span class="c1"># y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the analysis for SASA</span>
+<span class="n">sasa_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">sasa_config</span><span class="o">=</span><span class="n">sasa_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the analysis with a single group or a single file, just provide one list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sasa_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If no configuration dictionaries are provided, default settings will be used. Customize the plots as needed to match the desired presentation style or publication format.</p>
+</section>
+<section id="salt-bridge">
+<h2>Salt Bridge<a class="headerlink" href="#salt-bridge" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires <cite>.xvg</cite> output files from GROMACS for salt bridge analysis between the ligand and the protein, or only protein. These files are typically generated using the <cite>gmx mindist</cite> tool with appropriate index groups and contain time series of minimum distances between charged groups.</p>
+<p>The <cite>.xvg</cite> file must follow this format:</p>
+<ul class="simple">
+<li><p>Column 1: Simulation time (ps)</p></li>
+<li><p>Column 2: Minimum salt-bridge distance (nm) between charged groups over time</p></li>
+</ul>
+<p>This data allows monitoring the presence or absence of salt-bridge interactions during the simulation.</p>
+<p>To generate the required <cite>.xvg</cite> file using GROMACS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>mindist<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-od<span class="w"> </span>Simulation.xvg<span class="w"> </span>-on<span class="w"> </span>saltbridge.xvg<span class="w"> </span>-group<span class="w"> </span>-d<span class="w"> </span><span class="m">0</span>.4
+</pre></div>
+</div>
+<p><em>DynamiSpectra</em> supports multiple simulation groups, each with one or more replicates. The package automatically aligns time series, computes mean and standard deviation, and generates plots for both time evolution and density distribution of salt-bridge distances.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the salt bridge analysis module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.saltbridge</span><span class="w"> </span><span class="kn">import</span> <span class="n">saltbridge_analysis</span>
+</pre></div>
+</div>
+<p>Example with three groups of simulations, each containing three replicates:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define paths to .xvg replicate files for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\saltbridge_310k_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Output folder where the plots will be saved</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Configuration for the salt-bridge time series plot</span>
+<span class="n">saltbridge_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels shown in legend</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Colors for curves and shaded area</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of std deviation fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Size of the time series figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Label for x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Simulation Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Salt-Bridge Distance (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Configuration for the salt-bridge density distribution plot (KDE)</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for KDE plot</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Fill colors for KDE areas</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for filled areas</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Size of the density plot</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># x-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Salt-Bridge Distance (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the analysis for salt-bridge distances</span>
+<span class="n">saltbridge_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">saltbridge_config</span><span class="o">=</span><span class="n">saltbridge_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the analysis with a single group or a single file, just provide one list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">saltbridge_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If no configuration dictionaries are provided, default settings will be used. Customize the plots as needed to match your presentation or publication style.</p>
+</section>
+<section id="proteinligand-contacts">
+<h2>Protein–Ligand Contacts<a class="headerlink" href="#proteinligand-contacts" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires <cite>.xvg</cite> output files from GROMACS for analyzing the number of atomic contacts between protein and ligand during the simulation. These files are typically generated using the <cite>gmx mindist</cite> or <cite>gmx contact</cite> tool with appropriate index groups for the protein and ligand atoms.</p>
+<p>The <cite>.xvg</cite> file must follow this format:</p>
+<ul class="simple">
+<li><p>Column 1: Simulation time (ps)</p></li>
+<li><p>Column 2: Number of contacts between the selected groups over time</p></li>
+</ul>
+<p>This information allows monitoring interaction stability, binding dynamics, and fluctuation of protein–ligand contacts across time.</p>
+<p>To generate the required <cite>.xvg</cite> file using GROMACS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>mindist<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-on<span class="w"> </span>contacts.xvg<span class="w"> </span>-d<span class="w"> </span><span class="m">0</span>.35
+</pre></div>
+</div>
+<p><em>DynamiSpectra</em> supports multiple simulation groups, each with one or more replicates. The package automatically aligns time series, computes mean and standard deviation, and generates plots for both time evolution and density distribution of contacts.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the contact analysis module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Contacts</span><span class="w"> </span><span class="kn">import</span> <span class="n">contact_analysis</span>
+</pre></div>
+</div>
+<p>Example with three groups of simulations, each containing three replicates:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define paths to .xvg replicate files for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\contacts_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Output folder where the plots will be saved</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Configuration for the contact vs. time plot</span>
+<span class="n">contact_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Curve and fill colors</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Shaded area transparency</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Figure size (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># x-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Number of Contacts&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Configuration for the contact density (KDE) plot</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for KDE</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># KDE fill colors</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for density</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Size of the density plot</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># x-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Number of Contacts&#39;</span><span class="p">,</span>
+    <span class="c1"># y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the contact analysis</span>
+<span class="n">contact_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">contact_config</span><span class="o">=</span><span class="n">contact_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the analysis with a single group or a single file, just provide one list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contact_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If no configuration dictionaries are provided, default settings will be used. Customize the plots to suit your analysis or publication needs.</p>
+</section>
+<section id="proteinligand-minimum-distance">
+<h2>Protein–Ligand Minimum Distance<a class="headerlink" href="#proteinligand-minimum-distance" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> requires <cite>.xvg</cite> output files from GROMACS to analyze the minimum distance between protein and ligand atoms during molecular dynamics simulations. These files are typically generated using the <cite>gmx distance</cite> tool with selected atom groups from an index file.</p>
+<p>The <cite>.xvg</cite> file must follow this format:</p>
+<ul class="simple">
+<li><p>Column 1: Simulation time (ps)</p></li>
+<li><p>Column 2: Minimum distance (nm) between protein and ligand atoms at each time point</p></li>
+</ul>
+<p>This analysis allows the evaluation of binding stability, complex dissociation, and proximity of interaction over time.</p>
+<p>To generate the required <cite>.xvg</cite> file using GROMACS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>mindist<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-od<span class="w"> </span>mindist.xvg<span class="w"> </span>-d<span class="w"> </span><span class="m">0</span>.35
+</pre></div>
+</div>
+<p><em>DynamiSpectra</em> supports multiple simulation groups, each with one or more replicates. The tool aligns all time series, computes mean and standard deviation, and generates plots showing time evolution and the distribution of distances.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the distance analysis module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_analysis</span>
+</pre></div>
+</div>
+<p>Example with three simulation groups, each containing three replicates:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define paths to .xvg replicate files for each simulation group</span>
+<span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\distance_Replicate3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Output folder for saving plots and results</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="c1"># Configuration for the distance time series plot</span>
+<span class="n">distance_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for each simulation group</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line colors for the plots</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of shaded area (std deviation)</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Width and height of the time series plot</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Simulation Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Minimum Distance (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Configuration for the distance density distribution (KDE) plot</span>
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for KDE</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Fill colors for each simulation group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of KDE fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Width and height of the KDE plot</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Minimum Distance (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="c1"># Run the analysis for minimum distance</span>
+<span class="n">distance_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">distance_config</span><span class="o">=</span><span class="n">distance_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the analysis with a single group or a single file, just provide one list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">distance_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If no configuration dictionaries are provided, default plot settings will be applied. You can tailor the plot appearance for presentations or publications by adjusting the dictionary values.</p>
+</section>
+<section id="protein-ligand-hydrophobic-contacts">
+<h2>Protein-Ligand Hydrophobic Contacts<a class="headerlink" href="#protein-ligand-hydrophobic-contacts" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> supports the analysis of hydrophobic contacts between ligand and protein from <cite>.xvg</cite> files. These files typically represent the number of hydrophobic contacts over time, generated using custom GROMACS selections involving hydrophobic atoms.</p>
+<p>The <cite>.xvg</cite> file must follow this format:</p>
+<ul class="simple">
+<li><p>Column 1: Simulation time (ps)</p></li>
+<li><p>Column 2: Number of hydrophobic contacts between ligand and protein</p></li>
+</ul>
+<p>This analysis helps to evaluate the contribution of nonpolar interactions to the stability and binding of protein–ligand complexes.</p>
+<p>To generate <cite>.xvg</cite> files, you can use GROMACS with <cite>gmx select</cite> or other post-processing tools with appropriate selections:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span><span class="k">select</span><span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-select<span class="w"> </span><span class="s1">&#39;group &quot;LIG&quot; and within 0.6 of group &quot;Protein&quot;&#39;</span><span class="w"> </span>-os<span class="w"> </span>hydrophobic_contacts.xvg
+</pre></div>
+</div>
+<p><strong>Code Execution</strong></p>
+<p>Import the analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Hydrophobic_contacts</span><span class="w"> </span><span class="kn">import</span> <span class="n">hydrophobic_analysis</span>
+</pre></div>
+</div>
+<p>Example with three simulation groups, each with three replicate files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts_Rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts_Rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts_Rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts2_Rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts2_Rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts2_Rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts3_Rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts3_Rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\hydrophobic_contacts3_Rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">contact_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for each simulation group</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Colors for curves and shaded area</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of std deviation fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Figure size for time series</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Number of Hydrophobic Contacts&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Labels for KDE curves</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Fill colors for KDE</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="c1"># Size of the KDE plot</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Number of Hydrophobic Contacts&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Kernel Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="n">hydrophobic_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">contact_config</span><span class="o">=</span><span class="n">contact_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the analysis with only one group or a single file, simply provide one list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hydrophobic_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the configuration dictionaries are not provided, default plotting settings will be used.</p>
+</section>
+<section id="inter-residue-distance-matrix">
+<h2>Inter-residue Distance Matrix<a class="headerlink" href="#inter-residue-distance-matrix" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> supports the visualization of inter-residue distance matrices using <cite>.xpm</cite> files generated by GROMACS. These matrices represent the average distances between residue pairs throughout a trajectory and are useful for identifying compact or flexible regions within a protein.</p>
+<p>The <cite>.xpm</cite> file can be generated using the following GROMACS command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>mdmat<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-mean<span class="w"> </span>Simulation.xpm<span class="w"> </span>-no<span class="w"> </span>Simulation.xvg
+</pre></div>
+</div>
+<p>This analysis is typically used for all-against-all residue contact distances in a protein structure.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the distance matrix analysis module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.DistanceMatrix</span><span class="w"> </span><span class="kn">import</span> <span class="n">distance_matrix_analysis</span>
+</pre></div>
+</div>
+<p>Example for one <cite>.xpm</cite> file corresponding to a single simulation or replicate:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xpm_file_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test\mdmat.xpm&#39;</span>
+
+<span class="n">output_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test\distance_matrix&#39;</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Label for the X-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Residues&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for the Y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Residues&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="c1"># Title of the matrix plot</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Distance Matrix - Replica 1&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for the plot title</span>
+    <span class="s1">&#39;title_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="c1"># Label for the color scale</span>
+    <span class="s1">&#39;colorbar_label&#39;</span><span class="p">:</span> <span class="s1">&#39;Distance (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Maximum distance value (cmap upper limit)</span>
+    <span class="s1">&#39;max_distance&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="c1"># Colormap (e.g., &#39;jet&#39;, &#39;viridis&#39;, &#39;plasma&#39;)</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;jet&#39;</span>
+<span class="p">}</span>
+
+<span class="n">distance_matrix_analysis</span><span class="p">(</span>
+    <span class="n">xpm_file_path</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">,</span>
+    <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting plot will be saved as <cite>.png</cite> and <cite>.tiff</cite> using the specified <cite>output_path</cite> as prefix. The matrix is rendered as a color-coded heatmap where the color intensity reflects inter-residue distances.</p>
+<p>To use default plotting parameters, omit the <cite>config</cite> argument:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">distance_matrix_analysis</span><span class="p">(</span><span class="n">xpm_file_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="phi-and-psi-angles">
+<h2>Phi and Psi Angles<a class="headerlink" href="#phi-and-psi-angles" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> analyzes backbone dihedral angles φ (phi) and ψ (psi) from <cite>.xvg</cite> files generated by GROMACS. These files contain Ramachandran angle distributions used to assess protein conformational states over time.</p>
+<p>The <cite>.xvg</cite> files can be generated with the following GROMACS command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>rama<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-o<span class="w"> </span>rama.xvg
+</pre></div>
+</div>
+<p>This analysis creates kernel density estimation (KDE) heatmaps of φ-ψ angle distributions, helping identify favored secondary structure conformations.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the phi-psi analysis module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.PhiPsi</span><span class="w"> </span><span class="kn">import</span> <span class="n">phipsi_analysis</span>
+</pre></div>
+</div>
+<p>Example input files for three simulation groups, each with three replicates:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rama_rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">phipsi_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Colormap for KDE heatmaps</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;jet&#39;</span><span class="p">,</span>
+    <span class="c1"># KDE grid resolution</span>
+    <span class="s1">&#39;grid_size&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="c1"># Heatmap opacity</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="c1"># Size of each subplot (width, height)</span>
+    <span class="s1">&#39;figsize_subplot&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="c1"># Overall figure size (currently unused)</span>
+    <span class="s1">&#39;figsize_overall&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Font size for axis labels and colorbar</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="c1"># Custom names for each simulation group</span>
+    <span class="s1">&#39;group_names&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;PNU Treatment&#39;</span><span class="p">,</span> <span class="s1">&#39;Control Group&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">phipsi_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">phipsi_config</span><span class="o">=</span><span class="n">phipsi_config</span><span class="p">,</span>
+    <span class="n">residue_name</span><span class="o">=</span><span class="s2">&quot;ALA-30&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting KDE plots display favored φ and ψ angle regions per group, facilitating comparison of backbone conformational sampling.</p>
+<p>To analyze all residues without filtering, omit the <cite>residue_name</cite> parameter or set it to <cite>None</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">phipsi_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">phipsi_config</span><span class="o">=</span><span class="n">phipsi_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="rotamers-dihedral-1-and-2-angles">
+<h2>Rotamers (Dihedral χ1 and χ2 Angles)<a class="headerlink" href="#rotamers-dihedral-1-and-2-angles" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> supports detailed analysis of side-chain rotamer states through the dihedral angles χ1 and χ2 extracted from .xvg files generated by GROMACS. This analysis helps characterize conformational changes and rotamer preferences during molecular dynamics simulations. Circular mean statistics are used to average χ1 and χ2 angles across replicates, properly accounting for their periodic nature. This module generates three types of plots to visualize rotamer distributions.</p>
+<ul class="simple">
+<li><p><strong>KDE</strong>: Kernel Density Estimation (2D KDE heatmap) showing the probability density of χ1 and χ2 angles combined.</p></li>
+<li><p><strong>Dotplot</strong>: Scatter plot filtered by the selected time window.</p></li>
+<li><p><strong>Histogram (Hist)</strong>: Distribution plots of χ1 and χ2 angles separately, showing frequency density.</p></li>
+</ul>
+<p>You can extract χ1 and χ2 dihedral angles with GROMACS using commands like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>chi<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-o<span class="w"> </span>chi1.xvg<span class="w"> </span>-type<span class="w"> </span>dihedral
+gmx<span class="w"> </span>chi<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-o<span class="w"> </span>chi2.xvg<span class="w"> </span>-type<span class="w"> </span>dihedral
+</pre></div>
+</div>
+<p>These visualizations provide a comprehensive view of side-chain conformations during the simulation.</p>
+<p><strong>Note:</strong> The atom groups defining the χ1 and χ2 dihedral angles must be correctly specified in the GROMACS index file (<cite>.ndx</cite>) prior to angle calculation.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the rotamer analysis function from <em>DynamiSpectra</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Rotamers</span><span class="w"> </span><span class="kn">import</span> <span class="n">dihedral_kde_and_dotplot</span>
+</pre></div>
+</div>
+<p>Example input files for χ1 and χ2 angles:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chi1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rotamers_chi1_chi2\chi1_time_Rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rotamers_chi1_chi2\chi1_time_Rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rotamers_chi1_chi2\chi1_time_Rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">chi2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rotamers_chi1_chi2\chi2_time_Rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rotamers_chi1_chi2\chi2_time_Rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\rotamers_chi1_chi2\chi2_time_Rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+</pre></div>
+</div>
+<p>Specify the time window (in picoseconds) to filter the angle data analyzed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">time_window</span> <span class="o">=</span> <span class="p">(</span><span class="mi">35000</span><span class="p">,</span> <span class="mi">40000</span><span class="p">)</span>  <span class="c1"># Analyze frames between a time chosen</span>
+</pre></div>
+</div>
+<p>Run the analysis and generate KDE maps, dotplots, and histograms with customized titles, labels, colors, and output filename:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dihedral_kde_and_dotplot</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">chi1_files</span><span class="p">,</span>
+    <span class="n">chi2_files</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;kde_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Rotamers of Leu34 at 35–40 ns&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;dot_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Rotamers of Leu34 at 35–40 ns&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;hist_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Rotamer Distributions of Leu34 at 35–40 ns&#39;</span><span class="p">,</span>
+        <span class="c1"># X-axis label for histograms</span>
+        <span class="s1">&#39;hist_xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Angles (°)&#39;</span><span class="p">,</span>
+        <span class="c1"># Y-axis label for histograms</span>
+        <span class="s1">&#39;hist_ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span>
+        <span class="c1"># Histogram legend labels</span>
+        <span class="s1">&#39;hist_legend_labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;$\mathit{\chi_1}$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\mathit{\chi_2}$&#39;</span><span class="p">],</span>
+        <span class="c1"># Output filename</span>
+        <span class="s1">&#39;save_name&#39;</span><span class="p">:</span> <span class="s1">&#39;rotamers_plot.png&#39;</span><span class="p">,</span>
+        <span class="c1"># Colormap for KDE heatmaps</span>
+        <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Oranges&#39;</span><span class="p">,</span>
+        <span class="c1"># Dot color in dotplot</span>
+        <span class="s1">&#39;dot_color&#39;</span><span class="p">:</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span>
+        <span class="c1"># Label for KDE colorbar</span>
+        <span class="s1">&#39;colorbar_label&#39;</span><span class="p">:</span> <span class="s1">&#39;Estimated Density&#39;</span><span class="p">,</span>
+        <span class="c1"># Histogram color for χ1</span>
+        <span class="s1">&#39;chi1_color&#39;</span><span class="p">:</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span>
+        <span class="c1"># Histogram color for χ2</span>
+        <span class="s1">&#39;chi2_color&#39;</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span>
+    <span class="p">},</span>
+    <span class="n">time_window</span><span class="o">=</span><span class="n">time_window</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The output will include combined KDE, dotplot, and histogram figures illustrating the rotamer distributions for the selected residue and time window.</p>
+<p>To change the analyzed residue or time window, modify the input files and <cite>time_window</cite> parameter accordingly.</p>
+</section>
+<section id="ligand-density">
+<h2>Ligand Density<a class="headerlink" href="#ligand-density" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> enables visualization of ligand density maps using <cite>.xpm</cite> files generated by GROMACS. These maps represent the spatial occupancy of ligand atoms around the target molecule during the simulation, helping identify preferred binding regions or solvent-exposed areas.</p>
+<p>The <cite>.xpm</cite> file can be generated with a GROMACS command such as:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>densmap<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-o<span class="w"> </span>ligand_density.xpm
+</pre></div>
+</div>
+<p>This analysis provides a 2D heatmap of ligand occupancy, with colors representing the frequency of ligand presence in specific spatial bins.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the ligand density analysis module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.ligand_density</span><span class="w"> </span><span class="kn">import</span> <span class="n">ligand_density_analysis</span>
+</pre></div>
+</div>
+<p>Example usage for one <cite>.xpm</cite> file and specifying output plot parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">xpm_file_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\Ligand_Density\ligand_density.xpm&#39;</span>
+
+<span class="n">output_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">ligand_density_analysis</span><span class="p">(</span>
+    <span class="c1"># Input .xpm file path</span>
+    <span class="n">xpm_file_path</span><span class="p">,</span>
+    <span class="c1"># Output path prefix (no extension added)</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span>
+    <span class="c1"># Show plot interactively</span>
+    <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="c1"># Colormap for heatmap visualization</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">,</span>
+    <span class="c1"># X-axis label</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Z-axis (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;X-axis (nm)&#39;</span><span class="p">,</span>
+    <span class="c1"># Plot title</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Ligand Density around Target&#39;</span><span class="p">,</span>
+    <span class="c1"># Colorbar label</span>
+    <span class="n">colorbar_label</span><span class="o">=</span><span class="s1">&#39;Occupancy&#39;</span><span class="p">,</span>
+     <span class="c1"># Figure size in inches (width, height)</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Font size for axis labels and colorbar</span>
+    <span class="n">label_fontsize</span><span class="o">=</span><span class="mi">12</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting plots are saved in <cite>.png</cite> and <cite>.tiff</cite> formats at the specified output location.</p>
+<p>To use default plotting parameters, call the function with just the <cite>.xpm</cite> file and output path:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ligand_density_analysis</span><span class="p">(</span><span class="n">xpm_file_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="ligand-dihedral-angle-analysis">
+<h2>Ligand Dihedral Angle Analysis<a class="headerlink" href="#ligand-dihedral-angle-analysis" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> provides analysis and visualization of ligand dihedral angles over time, allowing insight into conformational changes and flexibility of ligand torsions during molecular dynamics simulations.</p>
+<p>Input data consist of <cite>.xvg</cite> files containing dihedral angle values measured at each simulation frame for multiple replicas across different simulation groups.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>gangle<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-n<span class="w"> </span>Simulation.ndx<span class="w"> </span>-g1<span class="w"> </span>dihedral<span class="w"> </span>-group1<span class="w"> </span>diedro_1<span class="w"> </span>-oall<span class="w"> </span>diedro_ligand.xvg
+</pre></div>
+</div>
+<p><strong>Note:</strong> To extract ligand dihedral angles using GROMACS, the specific atoms defining each dihedral must be pre-defined in the index (<cite>.ndx</cite>) file.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the ligand angle analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.LigandAngle</span><span class="w"> </span><span class="kn">import</span> <span class="n">angle_ligand_analysis</span>
+</pre></div>
+</div>
+<p>Example with three simulation groups, each containing three replicate <cite>.xvg</cite> files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep1_angle1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep2_angle1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep3_angle1.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep1_angle1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep2_angle1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep3_angle1.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep1_angle1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep2_angle1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Project\MD\LigandDihedral\ligand_dihedral_Rep3_angle1.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Bioinformatics\Documents\LigandAngleResults&#39;</span>
+
+<span class="n">time_config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1"># Legend labels</span>
+<span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+<span class="c1"># Line colors</span>
+<span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+<span class="c1"># Shaded area transparency (±SD)</span>
+<span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+<span class="c1"># Figure size (width, height)</span>
+<span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="c1"># X-axis label</span>
+<span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+<span class="c1"># Y-axis label</span>
+<span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Dihedral angle (°)&#39;</span><span class="p">,</span>
+<span class="c1"># Font size for axis labels</span>
+<span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+<span class="c1"># Smoothing window (optional)</span>
+<span class="s1">&#39;smooth_window&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+<span class="c1"># Y-axis range</span>
+<span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">127</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1"># Legend labels</span>
+<span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+<span class="c1"># Fill colors</span>
+<span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+<span class="c1"># Transparency for KDE</span>
+<span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+<span class="c1"># Figure size</span>
+<span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="c1"># X-axis label</span>
+<span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Dihedral angle (°)&#39;</span><span class="p">,</span>
+<span class="c1"># Y-axis label</span>
+<span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span>
+<span class="c1"># Font size for axis labels</span>
+<span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="n">kde2d_config</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1"># Legend labels</span>
+<span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+<span class="c1"># Marker/line colors</span>
+<span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+<span class="c1"># Figure size</span>
+<span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+<span class="c1"># X-axis label</span>
+<span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+<span class="c1"># Y-axis label</span>
+<span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Dihedral angle (°)&#39;</span><span class="p">,</span>
+<span class="c1"># Font size for axis labels</span>
+<span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+<span class="c1"># Colormap for 2D KDE heatmap</span>
+<span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Oranges&#39;</span>
+<span class="p">}</span>
+
+
+<span class="n">angle_ligand_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">time_config</span><span class="o">=</span><span class="n">time_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span><span class="p">,</span>
+    <span class="n">kde2d_config</span><span class="o">=</span><span class="n">kde2d_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This will produce plots of dihedral angles over time with mean ± standard deviation shading, KDE density distributions, and 2D KDE heatmaps showing angle vs. simulation time, all saved to the specified output folder.</p>
+<p>To run the analysis with a single group or a single file, just provide one list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">angle_ligand_analysis</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">simulation1_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If no configuration dictionaries are provided, default plot settings will be applied. You can tailor the plot appearance for presentations or publications by adjusting the dictionary values.</p>
+</section>
+<section id="principal-component-analysis-pca">
+<h2>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> provides tools to visualize and interpret the results of principal component analysis (PCA) applied to molecular dynamics trajectories. This analysis allows the identification of dominant motions and conformational changes by projecting atomic displacements onto principal components.</p>
+<p>The input files consist of:</p>
+<ul class="simple">
+<li><p>A <cite>.xvg</cite> file containing the projection of atomic displacements onto PC1 and PC2 (typically generated using <cite>gmx covar</cite> and <cite>gmx anaeig</cite>)</p></li>
+<li><p>A <cite>.xvg</cite> file containing the eigenvalues for each principal component (typically <cite>eigenval.xvg</cite> from <cite>gmx anaeig</cite>)</p></li>
+</ul>
+<p><strong>Code Execution</strong></p>
+<p>Import the PCA analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.PCA</span><span class="w"> </span><span class="kn">import</span> <span class="n">pca_analysis</span>
+</pre></div>
+</div>
+<p>Define input files, output folder and run the analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pca_file_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\PCA\pca_projection.xvg&#39;</span>
+<span class="n">eigenval_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\data\PCA\eigenval.xvg&#39;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">pca_analysis</span><span class="p">(</span>
+<span class="c1"># Path to PCA projection file</span>
+<span class="n">pca_file_path</span><span class="p">,</span>
+<span class="c1"># Path to eigenvalue file</span>
+<span class="n">eigenval_path</span><span class="p">,</span>
+<span class="c1"># Output folder to save the plot</span>
+<span class="n">output_folder</span><span class="p">,</span>
+<span class="c1"># Title of the plot</span>
+<span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="c1"># Size of the figure (width, height)</span>
+<span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
+<span class="c1"># Colormap used for time coloring</span>
+<span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;inferno&#39;</span><span class="p">,</span>
+<span class="c1"># Size of the scatter points</span>
+<span class="n">point_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="c1"># Font size for X and Y axis labels</span>
+<span class="n">axis_label_fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+<span class="c1"># Font size for the title</span>
+<span class="n">title_fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+<span class="c1"># Font size for the colorbar label</span>
+<span class="n">colorbar_label_fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>
+<span class="c1"># Font size for the colorbar ticks</span>
+<span class="n">colorbar_tick_fontsize</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This will generate a PCA scatter plot where each point represents a frame projected in the PC1–PC2 space, colored according to simulation time. The fraction of variance explained by PC1 and PC2 is automatically extracted from the eigenvalue file and included in the axis labels. You can modify the colormap, point size, and transparency as needed for presentation or publication purposes.</p>
+<p>To use default settings, omit the optional keyword arguments.</p>
+</section>
+<section id="secondary-structure-probability">
+<h2>Secondary Structure Probability<a class="headerlink" href="#secondary-structure-probability" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> provides tools for the analysis and comparison of secondary structure content across different simulation groups. The analysis is based on <cite>.dat</cite> files containing the fraction of time each residue spent in different secondary structure elements (e.g., helix, sheet, coil) throughout the trajectory.</p>
+<p>These <cite>.dat</cite> files are typically generated by external tools such as <strong>dssp</strong> in GROMACS or <cite>gmx dssp</cite>, followed by post-processing to calculate structure probabilities per residue.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the secondary structure analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.SecondaryStructure</span><span class="w"> </span><span class="kn">import</span> <span class="n">ss_analysis</span>
+</pre></div>
+</div>
+<p>Define input files for each simulation group (each group consists of replicate <cite>.dat</cite> files), and run the analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation1_rep1.dat&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation1_rep2.dat&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation1_rep3.dat&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation2_rep1.dat&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation2_rep2.dat&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation2_rep3.dat&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation3_rep1.dat&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation3_rep2.dat&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\simulation3_rep3.dat&#39;</span>
+<span class="p">]</span>
+
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">plot_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Names of the groups</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Colors for each group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency of the lines or shaded area</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;axis_label_size&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="c1"># Label for the Y-axis</span>
+    <span class="s1">&#39;y_axis_label&#39;</span><span class="p">:</span> <span class="s1">&#39;Secondary Structure Probability (%)&#39;</span><span class="p">,</span>
+    <span class="c1"># Figure size (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">ss_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">plot_config</span><span class="o">=</span><span class="n">plot_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This will produce a plot showing the average secondary structure probability across residues, with shaded regions representing the standard deviation among replicates for each simulation group. If no plot configuration is provided, default styles will be applied.</p>
+</section>
+<section id="secondary-structure-fractions">
+<h2>Secondary Structure Fractions<a class="headerlink" href="#secondary-structure-fractions" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> allows visualization of the time evolution of global secondary structure content during molecular dynamics simulations. This analysis provides insights into the overall structural dynamics by quantifying the fraction of residues adopting each secondary structure type (helix, sheet, coil) per frame.</p>
+<p>The input <cite>.dat</cite> file must contain secondary structure assignments per frame, usually obtained using <cite>gmx dssp</cite> followed by conversion to per-frame structural fractions.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.FractionSS</span><span class="w"> </span><span class="kn">import</span> <span class="n">fractions_ss_analysis</span>
+</pre></div>
+</div>
+<p>Specify the input file, output folder and optional plot configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Desktop\DynamiSpectra\datas\SecondaryStructure\simulation1.dat&#39;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">plot_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Plot title</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Secondary Structure Fractions Over Time&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for x-axis</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Simulation Frames&#39;</span><span class="p">,</span>
+    <span class="c1"># Label for y-axis</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Residue Fraction&#39;</span><span class="p">,</span>
+    <span class="c1"># Size of the figure</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Font size for labels</span>
+    <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="c1"># X-axis range (optional)</span>
+    <span class="s1">&#39;xlim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span>
+    <span class="c1"># Y-axis range (optional)</span>
+    <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run the analysis and export the plot and Excel summary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fractions_ss_analysis</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">plot_config</span><span class="o">=</span><span class="n">plot_config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function will produce:</p>
+<ul class="simple">
+<li><p>A time series plot showing the evolution of helix, sheet, and coil content over time.</p></li>
+<li><p>An Excel file (<cite>SecondaryStructure_Fractions.xlsx</cite>) containing both raw and average values of each structure type.</p></li>
+</ul>
+<p>If no configuration is provided, the plot will be generated using default settings.</p>
+</section>
+<section id="pressure-analysis">
+<h2>Pressure Analysis<a class="headerlink" href="#pressure-analysis" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> enables visualization of system pressure throughout molecular dynamics simulations. Pressure analysis helps assess system equilibration, barostat performance, and simulation stability over time. This module accepts <cite>.xvg</cite> output files generated by GROMACS using the built-in pressure calculation options during simulation.</p>
+<p>To generate the required <cite>.xvg</cite> file for temperature using GROMACS, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>energy<span class="w"> </span>-f<span class="w"> </span>Simulation.edr<span class="w"> </span>-o<span class="w"> </span>pressure.xvg
+</pre></div>
+</div>
+<p>Input data consists of <cite>.xvg</cite> files output by GROMACS temperature calculations.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the pressure analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Pressure</span><span class="w"> </span><span class="kn">import</span> <span class="n">pressure_analysis</span>
+</pre></div>
+</div>
+<p>Define the input files for each simulation group:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim1_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim1_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim1_rep3.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim2_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim2_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim2_rep3.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim3_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim3_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dynamics\pressure_sim3_rep3.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Specify the output folder and run the analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">pressure_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line colors for each group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Figure size (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Std deviation fill transparency</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Pressure (bar)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis and legend</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="c1"># Y-axis range</span>
+    <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">900</span><span class="p">,</span> <span class="mi">900</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Fill colors for KDE plots</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Figure size (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Fill transparency</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Pressure (bar)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="c1"># Minimum x-value for KDE plot</span>
+    <span class="s1">&#39;x_min&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">900</span><span class="p">,</span>
+    <span class="c1"># Maximum x-value for KDE plot</span>
+    <span class="s1">&#39;x_max&#39;</span><span class="p">:</span> <span class="mi">900</span>
+<span class="p">}</span>
+
+<span class="n">pressure_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">pressure_config</span><span class="o">=</span><span class="n">pressure_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This will generate a time series plot showing the pressure profile with mean ± standard deviation for each group, and a KDE plot of pressure distributions.</p>
+</section>
+<section id="temperature-analysis">
+<h2>Temperature Analysis<a class="headerlink" href="#temperature-analysis" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> allows analysis and visualization of system temperature during molecular dynamics simulations. Temperature profiles help monitor system equilibration and thermal stability.</p>
+<p>To generate the required <cite>.xvg</cite> file for temperature using GROMACS, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>energy<span class="w"> </span>-f<span class="w"> </span>Simulation.edr<span class="w"> </span>-o<span class="w"> </span>temperature.xvg
+</pre></div>
+</div>
+<p>Input data consists of <cite>.xvg</cite> files output by GROMACS temperature calculations.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the temperature analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Temperature</span><span class="w"> </span><span class="kn">import</span> <span class="n">temperature_analysis</span>
+</pre></div>
+</div>
+<p>Define the input <cite>.xvg</cite> files for each simulation group (each group with multiple replicates):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep3.xvg&#39;</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\temperature_rep3.xvg&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Specify the output folder to save the plots and run the analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">temp_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Line colors for each group</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#e04f4f&#39;</span><span class="p">,</span> <span class="s2">&quot;#bca140&quot;</span><span class="p">],</span>
+    <span class="c1"># Transparency for std deviation shading</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="c1"># Figure size (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Fill colors for KDE plots</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#e04f4f&#39;</span><span class="p">,</span> <span class="s1">&#39;#bca140&#39;</span><span class="p">],</span>
+    <span class="c1"># Transparency for KDE fill</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="c1"># Figure size (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">12</span>
+<span class="p">}</span>
+
+<span class="n">temperature_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">temp_config</span><span class="o">=</span><span class="n">temp_config</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This will generate time series plots showing temperature fluctuations with mean ± standard deviation and KDE plots representing the temperature distribution for each simulation group.</p>
+<p>To analyze a single simulation group, provide a single list of files. If the configuration dictionaries are omitted, default plotting parameters will be applied.</p>
+</section>
+<section id="density-analysis">
+<h2>Density Analysis<a class="headerlink" href="#density-analysis" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> allows analysis and visualization of system density throughout molecular dynamics simulations. This provides insight into system stability, phase transitions, and equilibration.</p>
+<p>This module processes <cite>.xvg</cite> files typically generated by GROMACS during simulation or via energy analysis tools.</p>
+<p>To obtain density data from GROMACS, you can use the following command after your simulation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>energy<span class="w"> </span>-f<span class="w"> </span>Simulation.edr<span class="w"> </span>-o<span class="w"> </span>density.xvg
+</pre></div>
+</div>
+<p>Select the density property when prompted.</p>
+<p><strong>Code Execution</strong></p>
+<p>Import the density analysis function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dynamispectra.Density</span><span class="w"> </span><span class="kn">import</span> <span class="n">density_analysis</span>
+</pre></div>
+</div>
+<p>Define the input files for each simulation group:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">simulation1_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation1\density_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation1\density_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation1\density_rep3.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">simulation2_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation2\density_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation2\density_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation2\density_rep3.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">simulation3_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation3\density_rep1.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation3\density_rep2.xvg&#39;</span><span class="p">,</span>
+    <span class="sa">r</span><span class="s1">&#39;E:\Conrado\PNU\Dinamica\simulation3\density_rep3.xvg&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Specify the output folder and run the analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Conrado\Documents\Test&#39;</span>
+
+<span class="n">density_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for each simulation group</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Colors for each line and shaded area</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Figure size (width, height)</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Transparency of shaded std deviation area</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (ns)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density (kg/m³)&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="c1"># Y-axis limits for better visualization</span>
+    <span class="s1">&#39;ylim&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">950</span><span class="p">,</span> <span class="mi">1010</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">distribution_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Legend labels for KDE plots</span>
+    <span class="s1">&#39;labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Simulation 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 2&#39;</span><span class="p">,</span> <span class="s1">&#39;Simulation 3&#39;</span><span class="p">],</span>
+    <span class="c1"># Colors for KDE fills</span>
+    <span class="s1">&#39;colors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span> <span class="s1">&#39;#6A9EDA&#39;</span><span class="p">,</span> <span class="s1">&#39;#49C547&#39;</span><span class="p">],</span>
+    <span class="c1"># Figure size</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="c1"># Transparency for KDE fills</span>
+    <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="c1"># X-axis label</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density (kg/m³)&#39;</span><span class="p">,</span>
+    <span class="c1"># Y-axis label</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span>
+    <span class="c1"># Font size for axis labels</span>
+    <span class="s1">&#39;label_fontsize&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="c1"># Minimum x value for KDE plot range</span>
+    <span class="s1">&#39;x_min&#39;</span><span class="p">:</span> <span class="mi">950</span><span class="p">,</span>
+    <span class="c1"># Maximum x value for KDE plot range</span>
+    <span class="s1">&#39;x_max&#39;</span><span class="p">:</span> <span class="mi">1010</span>
+<span class="p">}</span>
+
+<span class="n">density_analysis</span><span class="p">(</span>
+    <span class="n">output_folder</span><span class="p">,</span>
+    <span class="n">simulation1_files</span><span class="p">,</span>
+    <span class="n">simulation2_files</span><span class="p">,</span>
+    <span class="n">simulation3_files</span><span class="p">,</span>
+    <span class="n">density_config</span><span class="o">=</span><span class="n">density_config</span><span class="p">,</span>
+    <span class="n">distribution_config</span><span class="o">=</span><span class="n">distribution_config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This will generate plots of density over time with mean ± standard deviation shading, plus KDE density distribution plots, all saved to the specified output folder.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="RMSD.html" class="btn btn-neutral float-right" title="RMSD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Iverson Conrado Bezerra.
+      <span class="lastupdated">Last updated on Jul 13, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+# This file was created Fri Jul 11 13:05:52 2025
+# Created by:
+#                       :-) GROMACS - gmx rmsf, 2023.5 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /mnt/e/Conrado/PNU/Dinamica
+# Command line:
+#   gmx rmsf -f Ab1-42_PNU_Rep2.xtc -s Ab1-42_PNU_Rep2.tpr -o rmsf_300k_Rep2.xvg -res
+# gmx rmsf is part of G R O M A C S:
+#
+# GROningen Mixture of Alchemy and Childrens' Stories
+#
+@    title "RMS fluctuation"
+@    xaxis  label "Residue"
+@    yaxis  label "(nm)"
+@TYPE xy
+    1   1.1121
+    2   0.9407
+    3   0.7854
+    4   0.6794
+    5   0.5215
+    6   0.3489
+    7   0.4441
+    8   0.3710
+    9   0.2376
+   10   0.3000
+   11   0.3361
+   12   0.2326
+   13   0.2525
+   14   0.3276
+   15   0.3106
+   16   0.2548
+   17   0.2983
+   18   0.3568
+   19   0.3782
+   20   0.2846
+   21   0.3368
+   22   0.4676
+   23   0.4561
+   24   0.3604
+   25   0.3218
+   26   0.3733
+   27   0.3984
+   28   0.5400
+   29   0.4473
+   30   0.3018
+   31   0.2919
+   32   0.4789
+   33   0.3383
+   34   0.2608
+   35   0.4603
+   36   0.5109
+   37   0.5444
+   38   0.5796
+   39   0.6607
+   40   0.6710
+   41   0.7883
+   42   0.8597

@@ -1,0 +1,2 @@
+[console_scripts]
+dynami = main:main
