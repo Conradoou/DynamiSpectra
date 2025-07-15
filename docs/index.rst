@@ -12,6 +12,7 @@ Contents
 
    Overview
    Installation
+   Testing_guide
    Input
    RMSD
    RMSF

@@ -14,8 +14,6 @@ Overview
 
 .. code:: bash
 
-.. code:: bash
-
     gmx anaeig -v eingenvectors.trr -f Simulation.xtc -s Simulation.tpr -first 1 -last 2 -2d 2dproj.xvg
 
 **Note:** PCA analysis requires the eigenvalues.xvg and 2dproj.xvg files.
