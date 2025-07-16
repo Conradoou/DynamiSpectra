@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inter-residue Distance Matrix &mdash; DynamiSpectra 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="/DynamiSpectra/_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="/DynamiSpectra/_static/custom.css" />
+
+  
+    <link rel="canonical" href="https://conradoou.github.io/DynamiSpectra/DistanceMatrix.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Phi and Psi Angles" href="PhiPsi.html" />
+    <link rel="prev" title="Protein–Ligand Hydrophobic Contacts" href="Hydrophobic_contacts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DynamiSpectra
+              <img src="_static/logo1.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Testing_guide.html">Running Automated Tests for DynamiSpectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSD.html">RMSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSF.html">RMSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rg.html">Radius of gyration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hbond.html">Hydrogen Bond Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SASA.html">Solvent Accessible Surface Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Saltbridge.html">Salt Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contacts.html">Protein-Ligand Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance.html">Protein-Ligand Minimal Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hydrophobic_contacts.html">Protein–Ligand Hydrophobic Contacts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Inter-residue Distance Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-code">Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PhiPsi.html">Phi and Psi Angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rotamers.html">Rotamers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20Density.html">Ligand Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20angle.html">Ligand Angle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principal Component Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondaryStructure.html">Secondary Structure Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FractionSS.html">Secondary Structure Fraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pressure.html">System Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Temperature.html">System Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Density.html">System Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DynamiSpectra</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Inter-residue Distance Matrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/DistanceMatrix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="inter-residue-distance-matrix">
+<h1>Inter-residue Distance Matrix<a class="headerlink" href="#inter-residue-distance-matrix" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> provides a detailed analytical tool to calculate and visualize inter-residue distance matrices within molecular systems during molecular dynamics simulations, using input data in .xpm file formats. This analysis allows researchers to examine the spatial relationships and dynamic proximities between residues of a single molecular entity, such as a protein, thereby offering insights into structural conformations and intra-molecular interactions.</p>
+<p>The inter-residue distance matrix represents pairwise distances between residues across the entire molecular chain, enabling the identification of stable contacts, flexible regions, and conformational rearrangements.</p>
+<p><strong>Command line in GROMACS to generate .xvg files for the analysis:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>mdmat<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-mean<span class="w"> </span>Simulation.xpm<span class="w"> </span>-no<span class="w"> </span>Simulation.xvg
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">distance_matrix_analysis</span><span class="p">(</span><span class="n">xpm_file_path</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/DistanceMatrix.png" src="_images/DistanceMatrix.png" />
+<p><strong>Interpretation guidance:</strong> The resulting distance matrix is represented as a colored map, where darker regions correspond to larger inter-residue distances and lighter regions indicate closer proximities. This visualization enables the identification of tightly packed or interacting residue pairs as lighter areas, while more distant residues appear as darker zones.</p>
+</section>
+<section id="complete-code">
+<h2>Complete code<a class="headerlink" href="#complete-code" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">cm</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_xpm</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Reads an XPM file and converts it to a numerical matrix.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">-----------</span>
+<span class="sd">file_path : str</span>
+<span class="sd">    Path to the XPM file.</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">--------</span>
+<span class="sd">matrix : np.ndarray</span>
+<span class="sd">    Matrix with numeric values representing the image.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="c1"># Extract only lines with pixel data</span>
+<span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)]</span>
+<span class="n">header_line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;,&#39;</span><span class="p">)</span>
+<span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">ncolors</span><span class="p">,</span> <span class="n">chars_per_pixel</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">header_line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<span class="c1"># Build a color map from symbols to integers</span>
+<span class="n">color_map</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncolors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;,&#39;</span><span class="p">)</span>
+    <span class="n">symbol</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="n">chars_per_pixel</span><span class="p">]</span>
+    <span class="n">color_map</span><span class="p">[</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="c1"># Create matrix from symbols</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">ncolors</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;,&#39;</span><span class="p">)</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">color_map</span><span class="p">[</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">chars_per_pixel</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">chars_per_pixel</span><span class="p">)]</span>
+    <span class="n">matrix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_distance_matrix</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">save_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Residues&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Residues&#39;</span><span class="p">,</span>
+                     <span class="n">label_fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title_fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+                     <span class="n">colorbar_label</span><span class="o">=</span><span class="s1">&#39;Distance (nm)&#39;</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+                     <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plots a normalized distance matrix with a custom colormap.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">-----------</span>
+<span class="sd">matrix : np.ndarray</span>
+<span class="sd">    Input distance matrix.</span>
+<span class="sd">save_path : str</span>
+<span class="sd">    Path to save the plot (without extension).</span>
+<span class="sd">xlabel, ylabel : str</span>
+<span class="sd">    Labels for x and y axes.</span>
+<span class="sd">label_fontsize : int</span>
+<span class="sd">    Font size for axis labels.</span>
+<span class="sd">title : str</span>
+<span class="sd">    Title of the plot.</span>
+<span class="sd">title_fontsize : int</span>
+<span class="sd">    Font size of the title.</span>
+<span class="sd">colorbar_label : str</span>
+<span class="sd">    Label for the colorbar.</span>
+<span class="sd">max_distance : float</span>
+<span class="sd">    Max distance used to normalize the matrix.</span>
+<span class="sd">cmap : str</span>
+<span class="sd">    Colormap used for the plot.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Normalize the matrix by max value</span>
+<span class="n">matrix_norm</span> <span class="o">=</span> <span class="n">matrix</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="o">*</span> <span class="n">max_distance</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fliplr</span><span class="p">(</span><span class="n">matrix_norm</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
+
+<span class="c1"># Set axis limits and ticks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Add colorbar</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">colorbar_label</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_distance</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_distance</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+
+<span class="c1"># Labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">label_fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">label_fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_fontsize</span><span class="p">)</span>
+
+<span class="c1"># Adjust layout</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Save plot if path provided</span>
+<span class="k">if</span> <span class="n">save_path</span><span class="p">:</span>
+    <span class="n">base</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.tiff&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plots saved as </span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.png and </span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">.tiff&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">distance_matrix_analysis</span><span class="p">(</span><span class="n">xpm_file_path</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Main function to perform distance matrix analysis and plotting.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">-----------</span>
+<span class="sd">xpm_file_path : str</span>
+<span class="sd">    Path to the input XPM file.</span>
+<span class="sd">output_path : str</span>
+<span class="sd">    Path (without extension) to save output plot.</span>
+<span class="sd">plot : bool</span>
+<span class="sd">    Whether to display the plot.</span>
+<span class="sd">config : dict (optional)</span>
+<span class="sd">    Plot customization dictionary with keys:</span>
+<span class="sd">        - xlabel, ylabel</span>
+<span class="sd">        - label_fontsize</span>
+<span class="sd">        - title, title_fontsize</span>
+<span class="sd">        - colorbar_label</span>
+<span class="sd">        - max_distance</span>
+<span class="sd">        - cmap</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">read_xpm</span><span class="p">(</span><span class="n">xpm_file_path</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+    <span class="n">plot_distance_matrix</span><span class="p">(</span>
+        <span class="n">matrix</span><span class="p">,</span>
+        <span class="n">save_path</span><span class="o">=</span><span class="n">output_path</span><span class="p">,</span>
+        <span class="n">xlabel</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xlabel&#39;</span><span class="p">,</span> <span class="s1">&#39;Residues&#39;</span><span class="p">),</span>
+        <span class="n">ylabel</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ylabel&#39;</span><span class="p">,</span> <span class="s1">&#39;Residues&#39;</span><span class="p">),</span>
+        <span class="n">label_fontsize</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;label_fontsize&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="n">title_fontsize</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title_fontsize&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+        <span class="n">colorbar_label</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;colorbar_label&#39;</span><span class="p">,</span> <span class="s1">&#39;Distance (nm)&#39;</span><span class="p">),</span>
+        <span class="n">max_distance</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_distance&#39;</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;cmap&#39;</span><span class="p">,</span> <span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="k">return</span> <span class="n">matrix</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Hydrophobic_contacts.html" class="btn btn-neutral float-left" title="Protein–Ligand Hydrophobic Contacts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="PhiPsi.html" class="btn btn-neutral float-right" title="Phi and Psi Angles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Iverson Conrado Bezerra.
+      <span class="lastupdated">Last updated on Jul 16, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
