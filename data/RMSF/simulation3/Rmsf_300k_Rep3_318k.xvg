@@ -1,0 +1,59 @@
+# This file was created Fri Jul 11 13:09:49 2025
+# Created by:
+#                       :-) GROMACS - gmx rmsf, 2023.5 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /mnt/e/Conrado/PNU/Dinamica
+# Command line:
+#   gmx rmsf -f Ab1-42_PNU_Rep3_318k.xtc -s Ab1-42_PNU_Rep3_318k.tpr -o rmsf_300k_Rep3_318k.xvg -res
+# gmx rmsf is part of G R O M A C S:
+#
+# Giant Rising Ordinary Mutants for A Clerical Setup
+#
+@    title "RMS fluctuation"
+@    xaxis  label "Residue"
+@    yaxis  label "(nm)"
+@TYPE xy
+    1   1.0649
+    2   0.8214
+    3   0.7379
+    4   0.6606
+    5   0.5761
+    6   0.4259
+    7   0.5386
+    8   0.4659
+    9   0.3397
+   10   0.4460
+   11   0.4451
+   12   0.3181
+   13   0.2858
+   14   0.3764
+   15   0.3789
+   16   0.2601
+   17   0.2530
+   18   0.3446
+   19   0.4836
+   20   0.3769
+   21   0.2744
+   22   0.4167
+   23   0.5296
+   24   0.3514
+   25   0.3979
+   26   0.5883
+   27   0.4992
+   28   0.5438
+   29   0.3510
+   30   0.2924
+   31   0.3544
+   32   0.4325
+   33   0.3968
+   34   0.4495
+   35   0.5342
+   36   0.6419
+   37   0.6349
+   38   0.5195
+   39   0.5344
+   40   0.4343
+   41   0.5471
+   42   0.6392

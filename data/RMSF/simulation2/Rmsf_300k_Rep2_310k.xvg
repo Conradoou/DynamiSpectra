@@ -1,0 +1,59 @@
+# This file was created Fri Jul 11 13:08:04 2025
+# Created by:
+#                       :-) GROMACS - gmx rmsf, 2023.5 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /mnt/e/Conrado/PNU/Dinamica
+# Command line:
+#   gmx rmsf -f Ab1-42_PNU_Rep2_310k.xtc -s Ab1-42_PNU_Rep2_310k.tpr -o rmsf_300k_Rep2_310k.xvg -res
+# gmx rmsf is part of G R O M A C S:
+#
+# Getting the Right Output Means no Artefacts in Calculating Stuff
+#
+@    title "RMS fluctuation"
+@    xaxis  label "Residue"
+@    yaxis  label "(nm)"
+@TYPE xy
+    1   0.5348
+    2   0.6216
+    3   0.5871
+    4   0.4611
+    5   0.6538
+    6   0.4087
+    7   0.4484
+    8   0.5757
+    9   0.4921
+   10   0.5070
+   11   0.5071
+   12   0.3869
+   13   0.3918
+   14   0.3231
+   15   0.3294
+   16   0.2653
+   17   0.2472
+   18   0.2129
+   19   0.3001
+   20   0.2427
+   21   0.2350
+   22   0.3341
+   23   0.3461
+   24   0.5061
+   25   0.4388
+   26   0.4741
+   27   0.4009
+   28   0.4415
+   29   0.3618
+   30   0.3220
+   31   0.2847
+   32   0.3459
+   33   0.2881
+   34   0.3031
+   35   0.3432
+   36   0.3920
+   37   0.4502
+   38   0.4436
+   39   0.5268
+   40   0.4249
+   41   0.4513
+   42   0.5228

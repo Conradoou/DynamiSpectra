@@ -1,0 +1,59 @@
+# This file was created Fri Jul 11 13:07:45 2025
+# Created by:
+#                       :-) GROMACS - gmx rmsf, 2023.5 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /mnt/e/Conrado/PNU/Dinamica
+# Command line:
+#   gmx rmsf -f Ab1-42_PNU_Rep1_310k.xtc -s Ab1-42_PNU_Rep1_310k.tpr -o rmsf_300k_Rep1_310k.xvg -res
+# gmx rmsf is part of G R O M A C S:
+#
+# GROningen MAchine for Chemical Simulation
+#
+@    title "RMS fluctuation"
+@    xaxis  label "Residue"
+@    yaxis  label "(nm)"
+@TYPE xy
+    1   1.0947
+    2   0.8497
+    3   0.8026
+    4   0.5717
+    5   0.6241
+    6   0.4662
+    7   0.5114
+    8   0.4386
+    9   0.3975
+   10   0.4917
+   11   0.4280
+   12   0.3495
+   13   0.3921
+   14   0.3670
+   15   0.3266
+   16   0.3174
+   17   0.2772
+   18   0.2356
+   19   0.3194
+   20   0.3574
+   21   0.2214
+   22   0.2966
+   23   0.3103
+   24   0.3555
+   25   0.3812
+   26   0.5061
+   27   0.4532
+   28   0.5369
+   29   0.4029
+   30   0.3006
+   31   0.3299
+   32   0.4729
+   33   0.3679
+   34   0.3359
+   35   0.5255
+   36   0.5857
+   37   0.5478
+   38   0.4906
+   39   0.5495
+   40   0.4972
+   41   0.5844
+   42   0.7513

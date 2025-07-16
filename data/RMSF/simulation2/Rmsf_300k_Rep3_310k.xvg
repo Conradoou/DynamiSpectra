@@ -1,0 +1,59 @@
+# This file was created Fri Jul 11 13:08:23 2025
+# Created by:
+#                       :-) GROMACS - gmx rmsf, 2023.5 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /mnt/e/Conrado/PNU/Dinamica
+# Command line:
+#   gmx rmsf -f Ab1-42_PNU_Rep3_310k.xtc -s Ab1-42_PNU_Rep3_310k.tpr -o rmsf_300k_Rep3_310k.xvg -res
+# gmx rmsf is part of G R O M A C S:
+#
+# Good gRace! Old Maple Actually Chews Slate
+#
+@    title "RMS fluctuation"
+@    xaxis  label "Residue"
+@    yaxis  label "(nm)"
+@TYPE xy
+    1   0.7757
+    2   0.6984
+    3   0.7527
+    4   0.6029
+    5   0.6443
+    6   0.4804
+    7   0.6853
+    8   0.6543
+    9   0.5256
+   10   0.5002
+   11   0.7007
+   12   0.6086
+   13   0.6219
+   14   0.6435
+   15   0.5943
+   16   0.5011
+   17   0.2803
+   18   0.3133
+   19   0.3779
+   20   0.3445
+   21   0.2722
+   22   0.3046
+   23   0.4411
+   24   0.4903
+   25   0.4846
+   26   0.5489
+   27   0.4469
+   28   0.5556
+   29   0.3810
+   30   0.2652
+   31   0.2777
+   32   0.4022
+   33   0.2835
+   34   0.2705
+   35   0.4258
+   36   0.4579
+   37   0.4347
+   38   0.4392
+   39   0.4747
+   40   0.5077
+   41   0.5676
+   42   0.7291
