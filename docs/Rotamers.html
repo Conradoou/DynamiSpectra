@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rotamers &mdash; DynamiSpectra 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3150b5f7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Ligand Density" href="Ligand%20Density.html" />
+    <link rel="prev" title="Phi and Psi Angles" href="PhiPsi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DynamiSpectra
+              <img src="_static/logo1.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Testing_guide.html">Running Automated Tests for DynamiSpectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSD.html">RMSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSF.html">RMSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rg.html">Radius of gyration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hbond.html">Hydrogen Bond Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SASA.html">Solvent Accessible Surface Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Saltbridge.html">Salt Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contacts.html">Protein-Ligand Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance.html">Protein-Ligand Minimal Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hydrophobic_contacts.html">Protein–Ligand Hydrophobic Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DistanceMatrix.html">Inter-residue Distance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PhiPsi.html">Phi and Psi Angles</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rotamers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-code">Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20Density.html">Ligand Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20angle.html">Ligand Angle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principal Component Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondaryStructure.html">Secondary Structure Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FractionSS.html">Secondary Structure Fraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pressure.html">System Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Temperature.html">System Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Density.html">System Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html">Changelog</a></li>
+</ul>
+
+  <div class="pdf-download" style="margin: 15px; text-align: center;">
+    <a href="https://dynamispectra.readthedocs.io/_/downloads/en/latest/pdf/" class="btn btn-neutral">
+      <i class="fa fa-file-pdf-o"></i> Download PDF
+    </a>
+  </div>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DynamiSpectra</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Rotamers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Rotamers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rotamers">
+<h1>Rotamers<a class="headerlink" href="#rotamers" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> provides a comprehensive framework for analyzing protein side chain rotameric states by examining the Chi1 and Chi2 dihedral angles during molecular dynamics simulations. Using input .xvg files, this module calculates circular means of these angles across multiple simulation replicas, allowing robust statistical analysis of side chain conformational dynamics.</p>
+<p>The module generates three types of plots: a 2D kernel density estimate (KDE) to visualize preferred rotamer conformations, a dotplot showing mean Chi1 versus Chi2 angles over time, and histograms displaying the distribution of individual Chi1 and Chi2 angles. This enables detailed characterization of rotamer populations, transitions, and conformational preferences critical for understanding protein function and dynamics.</p>
+<p><strong>Command line in GROMACS to generate .xvg files for the analysis:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>angle<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-n<span class="w"> </span>index.ndx<span class="w"> </span>-type<span class="w"> </span>dihedral<span class="w"> </span>-ov<span class="w"> </span>Simulation.xvg
+</pre></div>
+</div>
+<p><strong>Note:</strong> The atoms that define the Chi1 and Chi2 dihedral angles must be specified in the index file (.ndx) used with the gmx angle command. Ensure that the correct atom quadruplets are selected for each angle to obtain accurate rotameric data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dihedral_kde_and_dotplot</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">chi1_files</span><span class="p">,</span> <span class="n">chi2_files</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_window</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/Kde2d.png"><img alt="_images/Kde2d.png" class="align-center" src="_images/Kde2d.png" style="width: 600px;" />
+</a>
+<p><strong>Interpretation guidence:</strong> This 2D kernel density estimate (KDE) plot shows the distribution of Chi1 and Chi2 side-chain dihedral angles over the simulation. Darker regions correspond to higher estimated densities, indicating that those angular combinations were more frequently sampled. These high-density zones reveal preferred rotameric states adopted by the residue, while lighter areas indicate less frequent conformations. This plot provides insight into side-chain conformational preferences and flexibility during the simulation.</p>
+<a class="reference internal image-reference" href="_images/dotplot.png"><img alt="_images/dotplot.png" class="align-center" src="_images/dotplot.png" style="width: 600px;" />
+</a>
+<p><strong>Interpretation guidence:</strong> This plot displays the mean Chi1 and Chi2 dihedral angles over the course of the simulation or within a defined time window. Each point represents the averaged side chain conformation across multiple replicas at a given time. Clusters or patterns in the plot indicate preferred rotameric states, while dispersion suggests conformational variability. This visualization is useful for identifying dominant side chain orientations and assessing the dynamic range of rotameric transitions within the selected period.</p>
+<a class="reference internal image-reference" href="_images/histogram.png"><img alt="_images/histogram.png" class="align-center" src="_images/histogram.png" style="width: 600px;" />
+</a>
+<p><strong>Interpretation guidence:</strong> This histogram depicts the distribution density of dihedral angles observed during the simulation or within a selected time window. Distinct peaks indicate preferred rotamer conformations, while broader or multiple peaks suggest increased conformational flexibility or transitions between states.</p>
+</section>
+<section id="complete-code">
+<h2>Complete code<a class="headerlink" href="#complete-code" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">gaussian_kde</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_angle_time_xvg</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Reads a GROMACS .xvg file containing time and angle data.</span>
+<span class="sd">Returns time and angle arrays.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;@&#39;</span><span class="p">))</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+            <span class="n">angles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+            <span class="k">continue</span>
+<span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">times</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">circular_mean_deg</span><span class="p">(</span><span class="n">angles_deg</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Computes the circular mean of a set of angles (in degrees).</span>
+<span class="sd">This is used to correctly handle periodic data such as dihedrals.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">angles_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">angles_deg</span><span class="p">)</span>
+<span class="n">sin_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles_rad</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cos_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles_rad</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mean_angle_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">sin_sum</span><span class="p">,</span> <span class="n">cos_sum</span><span class="p">)</span>
+<span class="n">mean_angle_deg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">mean_angle_rad</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">mean_angle_deg</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mean_angles_across_replicas</span><span class="p">(</span><span class="n">file_list</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Computes the circular mean angle at each time point across multiple replicas.</span>
+<span class="sd">All trajectories are trimmed to the shortest one to ensure alignment.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">all_times</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">all_angles</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+    <span class="n">times</span><span class="p">,</span> <span class="n">angles</span> <span class="o">=</span> <span class="n">read_angle_time_xvg</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">all_times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="n">all_angles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span>
+
+<span class="n">min_len</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">all_times</span><span class="p">)</span>
+<span class="n">all_times_cut</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">[:</span><span class="n">min_len</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">all_times</span><span class="p">]</span>
+<span class="n">all_angles_cut</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">[:</span><span class="n">min_len</span><span class="p">]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">all_angles</span><span class="p">]</span>
+
+<span class="n">common_times</span> <span class="o">=</span> <span class="n">all_times_cut</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">all_angles_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">all_angles_cut</span><span class="p">)</span>  <span class="c1"># shape: (replicates, timepoints)</span>
+
+<span class="n">mean_angles</span> <span class="o">=</span> <span class="n">circular_mean_deg</span><span class="p">(</span><span class="n">all_angles_arr</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">common_times</span><span class="p">,</span> <span class="n">mean_angles</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dihedral_kde_and_dotplot</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">chi1_files</span><span class="p">,</span> <span class="n">chi2_files</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_window</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Generates KDE, dotplot, and histogram plots from Chi1 and Chi2 dihedral angles.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="s1">&#39;kde_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Chi1 vs Chi2 (KDE)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dot_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Chi1 vs Chi2 (Dotplot)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hist_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Distribution of Chi1 and Chi2 Angles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;xlabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\chi_1$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ylabel&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\chi_2$&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hist_xlabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Angle (degrees)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hist_ylabel&#39;</span><span class="p">:</span> <span class="s1">&#39;Density&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hist_legend_labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Chi1&#39;</span><span class="p">,</span> <span class="s1">&#39;Chi2&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;cmap&#39;</span><span class="p">:</span> <span class="s1">&#39;Oranges&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dot_color&#39;</span><span class="p">:</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dot_alpha&#39;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+    <span class="s1">&#39;chi1_color&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;chi2_color&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;colorbar_label&#39;</span><span class="p">:</span> <span class="s1">&#39;Estimated Density&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;save_name&#39;</span><span class="p">:</span> <span class="s1">&#39;kde_dotplot_chi1_vs_chi2.png&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;levels&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s1">&#39;bins&#39;</span><span class="p">:</span> <span class="mi">50</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="n">config</span><span class="p">:</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Read and compute mean angles from replicas</span>
+<span class="n">times1</span><span class="p">,</span> <span class="n">chi1_mean</span> <span class="o">=</span> <span class="n">mean_angles_across_replicas</span><span class="p">(</span><span class="n">chi1_files</span><span class="p">)</span>
+<span class="n">times2</span><span class="p">,</span> <span class="n">chi2_mean</span> <span class="o">=</span> <span class="n">mean_angles_across_replicas</span><span class="p">(</span><span class="n">chi2_files</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">times1</span><span class="p">,</span> <span class="n">times2</span><span class="p">),</span> <span class="s2">&quot;Chi1 and Chi2 replica times do not match!&quot;</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">times1</span>
+
+<span class="c1"># Filter by time window if defined</span>
+<span class="k">if</span> <span class="n">time_window</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">t_min</span><span class="p">,</span> <span class="n">t_max</span> <span class="o">=</span> <span class="n">time_window</span>
+    <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">times</span> <span class="o">&gt;=</span> <span class="n">t_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">times</span> <span class="o">&lt;=</span> <span class="n">t_max</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idxs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No data in the defined time window!&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">chi1_mean</span> <span class="o">=</span> <span class="n">chi1_mean</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+    <span class="n">chi2_mean</span> <span class="o">=</span> <span class="n">chi2_mean</span><span class="p">[</span><span class="n">idxs</span><span class="p">]</span>
+
+<span class="c1"># 2D KDE</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">chi1_mean</span><span class="p">,</span> <span class="n">chi2_mean</span><span class="p">])</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">bw_method</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">ygrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xgrid</span><span class="p">,</span> <span class="n">ygrid</span><span class="p">)</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">kernel</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plotting layout</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;figsize&#39;</span><span class="p">])</span>
+
+<span class="c1"># Panel 1: KDE Plot</span>
+<span class="n">kde</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;levels&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;cmap&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;kde_title&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;xlabel&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;ylabel&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">kde</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;colorbar_label&#39;</span><span class="p">])</span>
+
+<span class="c1"># Panel 2: Dotplot</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">chi1_mean</span><span class="p">,</span> <span class="n">chi2_mean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;dot_color&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;dot_alpha&#39;</span><span class="p">],</span>
+               <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;dot_title&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;xlabel&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;ylabel&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Panel 3: Histograms</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">chi1_mean</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;bins&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;hist_legend_labels&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;chi1_color&#39;</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">chi2_mean</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;bins&#39;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;hist_legend_labels&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;chi2_color&#39;</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;hist_title&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;hist_xlabel&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;hist_ylabel&#39;</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+
+<span class="c1"># Save figure</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;save_name&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PhiPsi.html" class="btn btn-neutral float-left" title="Phi and Psi Angles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Ligand%20Density.html" class="btn btn-neutral float-right" title="Ligand Density" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Iverson Conrado Bezerra.
+      <span class="lastupdated">Last updated on Jul 15, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secondary Structure Fraction &mdash; DynamiSpectra 1.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=3150b5f7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="System Pressure" href="Pressure.html" />
+    <link rel="prev" title="Secondary Structure Probability" href="SecondaryStructure.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            DynamiSpectra
+              <img src="_static/logo1.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Testing_guide.html">Running Automated Tests for DynamiSpectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Input.html">Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSD.html">RMSD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RMSF.html">RMSF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rg.html">Radius of gyration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hbond.html">Hydrogen Bond Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SASA.html">Solvent Accessible Surface Area</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Saltbridge.html">Salt Bridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contacts.html">Protein-Ligand Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Distance.html">Protein-Ligand Minimal Distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hydrophobic_contacts.html">Protein–Ligand Hydrophobic Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DistanceMatrix.html">Inter-residue Distance Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PhiPsi.html">Phi and Psi Angles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rotamers.html">Rotamers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20Density.html">Ligand Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ligand%20angle.html">Ligand Angle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PCA.html">Principal Component Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SecondaryStructure.html">Secondary Structure Probability</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Secondary Structure Fraction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-code">Complete code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Pressure.html">System Pressure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Temperature.html">System Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Density.html">System Density</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Changelog.html">Changelog</a></li>
+</ul>
+
+  <div class="pdf-download" style="margin: 15px; text-align: center;">
+    <a href="https://dynamispectra.readthedocs.io/_/downloads/en/latest/pdf/" class="btn btn-neutral">
+      <i class="fa fa-file-pdf-o"></i> Download PDF
+    </a>
+  </div>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DynamiSpectra</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Secondary Structure Fraction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/FractionSS.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="secondary-structure-fraction">
+<h1>Secondary Structure Fraction<a class="headerlink" href="#secondary-structure-fraction" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p><em>DynamiSpectra</em> provides a comprehensive secondary structure analysis module tailored for molecular dynamics simulations. This module processes simulation data to quantify the fraction of each secondary structure type—such as α-helices, β-sheets, and loops—across all trajectory frames. The resulting time-resolved plots enable detailed visualization of secondary structure composition dynamics throughout the simulation.</p>
+<p><strong>Command line in GROMACS to generate .xvg files for the analysis:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmx<span class="w"> </span>dssp<span class="w"> </span>-s<span class="w"> </span>Simulation.tpr<span class="w"> </span>-f<span class="w"> </span>Simulation.xtc<span class="w"> </span>-o<span class="w"> </span>ss.dat
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fractions_ss_analysis</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">plot_config</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/FSS.png" src="_images/FSS.png" />
+<p><strong>Interpretation guidance:</strong> The presented graph illustrates the temporal evolution of the fractions of residues adopting different secondary structure elements. Monitoring these fluctuations facilitates assessment of structural stability and conformational dynamics within the system. Consistent patterns may indicate stable folding, while variations can reveal conformational transitions or local instabilities. Comparative analysis across simulations aids in identifying reproducibility and the effects of differing initial conditions or parameters. Observed changes often correspond to the formation or disruption of critical structural motifs, thereby providing valuable insights into the molecular behavior under investigation.</p>
+<p><strong>Note:</strong> The .dat file contains raw data from the molecular dynamics simulation, classifying the secondary structure of each protein residue across all frames. The code reads this file and, for each frame, counts residues in each secondary structure type (e.g., α-helices, β-sheets, loops). It then calculates the fraction of each structure by dividing the count by the total number of residues. These fractions are plotted over time, showing how secondary structure proportions evolve during the simulation.</p>
+</section>
+<section id="complete-code">
+<h2>Complete code<a class="headerlink" href="#complete-code" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Loads the secondary structure .dat file into a DataFrame.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">-----------</span>
+<span class="sd">file_path : str</span>
+<span class="sd">    Path to the .dat file.</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">--------</span>
+<span class="sd">df : pd.DataFrame</span>
+<span class="sd">    DataFrame with one row per frame containing secondary structure string.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First few rows of the file:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">df</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading the file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_fractions</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calculates the fraction of each secondary structure over time.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">-----------</span>
+<span class="sd">df : pd.DataFrame</span>
+<span class="sd">    DataFrame with one row per frame containing the structure string.</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">--------</span>
+<span class="sd">results_df : pd.DataFrame</span>
+<span class="sd">    DataFrame with fraction values for each structure type over time.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">time</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">helix_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">sheet_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">coil_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">turn_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">bend_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">three_helix_fraction</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Iterate over each time step (row)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">total_residues</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+
+    <span class="c1"># Calculate fraction of each structure</span>
+    <span class="n">helix_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_residues</span><span class="p">)</span>
+    <span class="n">sheet_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_residues</span><span class="p">)</span>
+    <span class="n">coil_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_residues</span><span class="p">)</span>
+    <span class="n">turn_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_residues</span><span class="p">)</span>
+    <span class="n">bend_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_residues</span><span class="p">)</span>
+    <span class="n">three_helix_fraction</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;G&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_residues</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Create DataFrame with results</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">,</span>
+    <span class="s2">&quot;Helix Fraction&quot;</span><span class="p">:</span> <span class="n">helix_fraction</span><span class="p">,</span>
+    <span class="s2">&quot;Sheet Fraction&quot;</span><span class="p">:</span> <span class="n">sheet_fraction</span><span class="p">,</span>
+    <span class="s2">&quot;Coil Fraction&quot;</span><span class="p">:</span> <span class="n">coil_fraction</span><span class="p">,</span>
+    <span class="s2">&quot;Turn Fraction&quot;</span><span class="p">:</span> <span class="n">turn_fraction</span><span class="p">,</span>
+    <span class="s2">&quot;Bend Fraction&quot;</span><span class="p">:</span> <span class="n">bend_fraction</span><span class="p">,</span>
+    <span class="s2">&quot;3-Helix Fraction&quot;</span><span class="p">:</span> <span class="n">three_helix_fraction</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First few rows of the results:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="k">return</span> <span class="n">results_df</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_results</span><span class="p">(</span><span class="n">results_df</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">plot_config</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plots the fractions of each secondary structure type over time.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">-----------</span>
+<span class="sd">results_df : pd.DataFrame</span>
+<span class="sd">    DataFrame with computed fractions.</span>
+<span class="sd">output_folder : str</span>
+<span class="sd">    Path to save the output plots and Excel file.</span>
+<span class="sd">plot_config : dict</span>
+<span class="sd">    Dictionary with plot customization (title, labels, colors, etc).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Retrieve plot configuration</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;Secondary Structure Fractions&#39;</span><span class="p">)</span>
+<span class="n">xlabel</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xlabel&#39;</span><span class="p">,</span> <span class="s1">&#39;Frames&#39;</span><span class="p">)</span>
+<span class="n">ylabel</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ylabel&#39;</span><span class="p">,</span> <span class="s1">&#39;Fraction of Residues&#39;</span><span class="p">)</span>
+<span class="n">figsize</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;figsize&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fontsize&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">xlim</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;xlim&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">ylim</span> <span class="o">=</span> <span class="n">plot_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ylim&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+
+<span class="c1"># Plot each structure with distinct color and label</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">],</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Helix Fraction&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;α-Helix&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#6A9EDA&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">],</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Sheet Fraction&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;β-Sheet&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#f2444d&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">],</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Coil Fraction&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Loop/Coil&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#4bab44&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">],</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Turn Fraction&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Turn&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#fc9e19&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">],</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Bend Fraction&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bend&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#54b36a&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">],</span> <span class="n">results_df</span><span class="p">[</span><span class="s2">&quot;3-Helix Fraction&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;3-Helix&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#c9824f&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Set axis labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">xlim</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">ylim</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="c1"># Set legend at bottom center with multiple columns</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+           <span class="n">markerscale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">handleheight</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Create output folder if it doesn&#39;t exist</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Save plots</span>
+<span class="n">png_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s1">&#39;secondary_structure_fractions.png&#39;</span><span class="p">)</span>
+<span class="n">tiff_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s1">&#39;secondary_structure_fractions.tiff&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">png_path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">tiff_path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Save data to Excel</span>
+<span class="n">excel_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="s1">&#39;secondary_structure_fractions.xlsx&#39;</span><span class="p">)</span>
+<span class="n">results_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">excel_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Excel file saved: </span><span class="si">{</span><span class="n">excel_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fractions_ss_analysis</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">plot_config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Main function to perform secondary structure fraction analysis.</span>
+
+<span class="sd">Parameters:</span>
+<span class="sd">-----------</span>
+<span class="sd">file_path : str</span>
+<span class="sd">    Path to the input .dat file with secondary structure data.</span>
+<span class="sd">output_folder : str</span>
+<span class="sd">    Directory where plots and result files will be saved.</span>
+<span class="sd">plot_config : dict, optional</span>
+<span class="sd">    Customization for the plot appearance:</span>
+<span class="sd">        - title, xlabel, ylabel</span>
+<span class="sd">        - figsize, fontsize</span>
+<span class="sd">        - xlim, ylim</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">if</span> <span class="n">plot_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">plot_config</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">df</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">results_df</span> <span class="o">=</span> <span class="n">calculate_fractions</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">plot_results</span><span class="p">(</span><span class="n">results_df</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">plot_config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SecondaryStructure.html" class="btn btn-neutral float-left" title="Secondary Structure Probability" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Pressure.html" class="btn btn-neutral float-right" title="System Pressure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Iverson Conrado Bezerra.
+      <span class="lastupdated">Last updated on Jul 15, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
