@@ -31,7 +31,7 @@ Note: *DynamiSpectra* uses the package SciPy, which requires a fortran compiler 
 Documentation
 -------------
 
-https://github.com/Conradoou/DynamiSpectra/blob/6b8200eae1baf6dd75d88af79e047353c8ffdc8d/Documentation.pdf
+📄 [Download PDF Documentation](https://raw.githubusercontent.com/Conradoou/DynamiSpectra/6b8200eae1baf6dd75d88af79e047353c8ffdc8d/Documentation.pdf)
 https://conradoou.github.io/DynamiSpectra/
 
 Authors
