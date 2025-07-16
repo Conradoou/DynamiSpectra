@@ -40,31 +40,42 @@ master_doc = 'index'
 # -- HTML Config ----------------------------------------------------------
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
-html_extra_path = ['_static']  # Garante que a pasta _static seja copiada no build
 html_logo = '_static/logo1.png'
 html_use_smartypants = True
 html_last_updated_fmt = '%b %d, %Y'
-
-html_sidebars = {
-    '**': ['searchbox.html', 'globaltoc.html', 'sourcelink.html'],
-}
+templates_path = ['_templates']
 
 html_short_title = f'{project}-{release}'
+
+# Use caminho ABSOLUTO para custom.css para funcionar no GitHub Pages subpasta
 html_css_files = [
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
-    'custom.css',
+    '/DynamiSpectra/_static/custom.css',  # caminho absoluto
 ]
+html_js_files = []
 
 html_context = {
     'pdf_url': 'https://dynamispectra.readthedocs.io/_/downloads/en/latest/pdf/',
 }
 
-# Configurações para GitHub Pages com subpasta
+html_sidebars = {
+    '**': ['searchbox.html', 'globaltoc.html', 'sourcelink.html'],
+}
+
+# Config para GitHub Pages com subpasta
 html_baseurl = 'https://conradoou.github.io/DynamiSpectra/'
 
 html_theme_options = {
     'canonical_url': 'https://conradoou.github.io/DynamiSpectra/',
+    'style_external_refs': True,  # força URLs absolutas para CSS/JS do tema
 }
+
+# Isso evita conflitos ao copiar _static para o GitHub
+html_extra_path = []
+
+# Adiciona CSS com caminho absoluto para evitar erro no GitHub Pages
+def setup(app):
+    app.add_css_file('/DynamiSpectra/_static/custom.css')
 
 # -- PDF (LaTeX) Config ----------------------------------------------------
 latex_engine = 'xelatex'
@@ -85,7 +96,6 @@ latex_documents = [
 
 # -- Extra ------------------------------------------------------------------
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-templates_path = ['_templates']
 
 extlinks = {
     'issue': ('https://github.com/Conradoou/DynamiSpectra/issues/%s', '#'),
