@@ -32,7 +32,8 @@ Documentation
 -------------
 
 📄 [Download PDF Documentation](https://raw.githubusercontent.com/Conradoou/DynamiSpectra/6b8200eae1baf6dd75d88af79e047353c8ffdc8d/Documentation.pdf)
-https://conradoou.github.io/DynamiSpectra/
+
+🌐 [Online Documentation](https://conradoou.github.io/DynamiSpectra/)
 
 Authors
 -------
