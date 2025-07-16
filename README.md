@@ -38,8 +38,9 @@ Documentation
 Authors
 -------
 
-Iverson Conrado Bezerra
-Orcid: 0000-0003-0524-8913
+Iverson Conrado Bezerra  
+Orcid: 0000-0003-0524-8913  
+E-mail: iverson.coonrado@gmail.com
 
 Register
 --------
