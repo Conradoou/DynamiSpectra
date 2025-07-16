@@ -47,7 +47,6 @@ html_last_updated_fmt = '%b %d, %Y'
 html_sidebars = {
     '**': ['searchbox.html', 'globaltoc.html', 'sourcelink.html'],
 }
-html_theme_path = ["."]
 html_short_title = f'{project}-{release}'
 html_css_files = [
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
@@ -55,6 +54,13 @@ html_css_files = [
 ]
 html_context = {
     'pdf_url': 'https://dynamispectra.readthedocs.io/_/downloads/en/latest/pdf/',
+}
+
+# Adiciona o caminho correto para GitHub Pages
+html_baseurl = 'https://conradoou.github.io/DynamiSpectra/'
+
+html_theme_options = {
+    'canonical_url': 'https://conradoou.github.io/DynamiSpectra/',
 }
 
 # -- PDF (LaTeX) Config ----------------------------------------------------
@@ -78,7 +84,7 @@ latex_documents = [
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 templates_path = ['_templates']
 extlinks = {
-    'issue': ('https://github.com/SEU-USUARIO/SEU-REPOSITORIO/issues/%s', '#'),
-    'pr': ('https://github.com/SEU-USUARIO/SEU-REPOSITORIO/pull/%s', 'PR #'),
+    'issue': ('https://github.com/Conradoou/DynamiSpectra/issues/%s', '#'),
+    'pr': ('https://github.com/Conradoou/DynamiSpectra/pull/%s', 'PR #'),
 }
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
