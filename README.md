@@ -35,6 +35,8 @@ Documentation
 
 🌐 [Online Documentation](https://conradoou.github.io/DynamiSpectra/)
 
+📄 [Paper](https://pubs.acs.org/doi/full/10.1021/acs.jcim.5c01270)
+
 Authors
 -------
 
@@ -51,3 +53,4 @@ Demo
 ----
 
 In the repository, specifically in DynamiSpectra/datas, there are several folders for each analysis with the corresponding GROMACS output data for testing.
+
