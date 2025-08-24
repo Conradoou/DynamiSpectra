@@ -18,7 +18,7 @@ The use, modification, or distribution of this Software (or any portion thereof)
 
 ATTRIBUTION REQUIREMENT:  
 If you use this software in your work, you must cite it as follows:  
-"Iverson Conrado Bezerra, DynamiSpectra, 2025. Available at: https://github.com/Conradoou/DynamiSpectra."
+Bezerra, I. C., Viana, J. O., Weber, K. C., & Gubert, P. (2015). DynamiSpectra: A Python software package and web platform for molecular dynamics simulation analysis. Journal of Chemical Information and Modeling, 55(11), 2430–2435. https://doi.org/10.1021/acs.jcim.5c01270
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -27,3 +27,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
